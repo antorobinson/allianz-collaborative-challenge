@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.allianz</groupId>
-	<artifactId>carbon_dioxide_tracker</artifactId>
+	<artifactId>carbon-dioxide-tracker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>carbon_dioxide_tracker</name>
+	<name>carbon-dioxide-tracker</name>
 	<description>Project for analyzing Co2 concentrations</description>
 	<properties>
 		<java.version>1.8</java.version>

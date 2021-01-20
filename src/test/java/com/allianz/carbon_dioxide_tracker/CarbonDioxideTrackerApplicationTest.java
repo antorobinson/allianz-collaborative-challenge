@@ -1,10 +1,10 @@
-package com.collaborativeChallenge.co2ConcentrationApp;
+package com.allianz.carbon_dioxide_tracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Co2ConcentrationAppApplicationTests {
+class CarbonDioxideTrackerApplicationTest {
 
 	@Test
 	void contextLoads() {
