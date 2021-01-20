@@ -8,10 +8,10 @@
 		<version>2.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.collaborativeChallenge</groupId>
-	<artifactId>co2ConcentrationApp</artifactId>
+	<groupId>com.allianz</groupId>
+	<artifactId>carbon_dioxide_tracker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>co2ConcentrationApp</name>
+	<name>carbon_dioxide_tracker</name>
 	<description>Project for analyzing Co2 concentrations</description>
 	<properties>
 		<java.version>1.8</java.version>
