@@ -1,4 +1,4 @@
-package com.allianz.carbon_dioxide_tracker;
+package com.allianz.carbondioxidetracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

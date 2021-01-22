@@ -1,4 +1,4 @@
-package com.allianz.carbon_dioxide_tracker.controller;
+package com.allianz.carbondioxidetracker.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +21,5 @@ public class CarbonDioxideDataController {
 		
 		return ResponseEntity.ok().body("Success");
 	}
-	
-	
+
 }

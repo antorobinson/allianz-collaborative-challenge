@@ -1,4 +1,4 @@
-package com.allianz.carbon_dioxide_tracker.service;
+package com.allianz.carbondioxidetracker.service;
 
 import org.json.JSONObject;
 
