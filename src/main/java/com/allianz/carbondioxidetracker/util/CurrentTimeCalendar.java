@@ -5,9 +5,12 @@ import java.util.Date;
 
 public class CurrentTimeCalendar {
 
+	private CurrentTimeCalendar() {
+	}
+
 	public static Date getCurrentTimeUsingCalendar(){
-		Calendar calendar = Calendar.getInstance();
-		Date date=calendar.getTime();
-		return date;
+
+		final Calendar calendar = Calendar.getInstance();
+		return calendar.getTime();
 	}
 }

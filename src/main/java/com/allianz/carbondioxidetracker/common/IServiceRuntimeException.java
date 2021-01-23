@@ -17,9 +17,4 @@ public class IServiceRuntimeException extends RuntimeException {
     public ErrorCode getErrorCode() {
         return errorCode;
     }
-
-    public String getErrorMessage() {
-        return getMessage();
-    }
-
 }

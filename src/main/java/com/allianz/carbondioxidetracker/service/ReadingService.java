@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ReadingService {
 
-	Reading addReading(Reading command) ;
+	ReadingInputResult addReading(ReadingInputCommand command) ;
 
 	List<Reading> retrieveReadings();
 	  

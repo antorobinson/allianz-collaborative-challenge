@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SensorServiceImpl implements SensorService{
+class SensorServiceImpl implements SensorService {
 	
 	SensorRepository sensorRepository;
 	

@@ -5,12 +5,12 @@ import org.junit.Test;
 
 import java.util.Date;
 
-public class CarbonReadingInputRequestTest {
+public class ReadingInputRequestTest {
 
     @Test
     public void testGettersAndSetters() {
 
-        final CarbonReadingInputRequest request = new CarbonReadingInputRequest() ;
+        final ReadingInputRequest request = new ReadingInputRequest() ;
 
         final Date date = new Date() ;
 

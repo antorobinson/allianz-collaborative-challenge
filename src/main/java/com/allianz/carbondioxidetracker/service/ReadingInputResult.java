@@ -2,10 +2,11 @@ package com.allianz.carbondioxidetracker.service;
 
 import java.util.Date;
 
-public class CarbonDioxideValueAddResult {
+public class ReadingInputResult {
 
     private Long id ;
     private Date date;
+    private Float readingValue;
 
     void setId(Long id) {
         this.id = id;
@@ -13,6 +14,10 @@ public class CarbonDioxideValueAddResult {
 
     void setDate(Date date) {
         this.date = date;
+    }
+
+    public void setReadingValue(Float readingValue) {
+        this.readingValue = readingValue;
     }
 
     public Long getId() {
@@ -23,6 +28,9 @@ public class CarbonDioxideValueAddResult {
         return date;
     }
 
+    public Float getReadingValue() {
+        return readingValue;
+    }
 
     public static Builder builder() {
         return new Builder() ;
@@ -30,13 +38,13 @@ public class CarbonDioxideValueAddResult {
 
     public static class Builder {
 
-        private final CarbonDioxideValueAddResult entity ;
+        private final ReadingInputResult entity ;
 
         private Builder() {
-            entity = new CarbonDioxideValueAddResult() ;
+            entity = new ReadingInputResult() ;
         }
 
-        public CarbonDioxideValueAddResult build() {
+        public ReadingInputResult build() {
             return entity ;
         }
 
@@ -49,6 +57,12 @@ public class CarbonDioxideValueAddResult {
         public Builder setDate(Date date) {
 
             entity.setDate(date);
+            return this ;
+        }
+
+        public Builder setReadingValue(Float readingValue) {
+
+            entity.setReadingValue(readingValue) ;
             return this ;
         }
 

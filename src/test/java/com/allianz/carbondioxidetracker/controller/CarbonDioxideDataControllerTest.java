@@ -1,10 +1,11 @@
 package com.allianz.carbondioxidetracker.controller;
 
-import com.allianz.carbondioxidetracker.boundary.adaptors.AddReadingRequestAdaptor;
 import com.allianz.carbondioxidetracker.common.IValidationException;
-import com.allianz.carbondioxidetracker.entity.Reading;
-import com.allianz.carbondioxidetracker.service.CarbonDioxideValueAddResult;
+import com.allianz.carbondioxidetracker.controller.adaptors.ReadingInputRequestAdaptor;
+import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
+import com.allianz.carbondioxidetracker.service.ReadingInputResult;
 import com.allianz.carbondioxidetracker.service.ReadingService;
+import com.allianz.carbondioxidetracker.service.SensorService;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,30 +18,33 @@ import java.util.GregorianCalendar;
 
 public class CarbonDioxideDataControllerTest {
 
-    private AddReadingRequestAdaptor addReadingRequestAdaptor;
+    private ReadingService mockReadingService;
 
-//    private CarbonDioxideDataService carbonDioxideDataService;
+    private SensorService mockSensorService;
 
-    private ReadingService readingService;
+    private ReadingInputRequestAdaptor mockReadingInputRequestAdaptor;
 
     private CarbonDioxideDataController controllerUnderTest;
+
 
     @Before
     public void setUp() {
 
-        addReadingRequestAdaptor = Mockito.mock(AddReadingRequestAdaptor.class) ;
-//        carbonDioxideDataService = Mockito.mock(CarbonDioxideDataService.class) ;
-        readingService = Mockito.mock(ReadingService.class) ;
+        mockReadingService = Mockito.mock(ReadingService.class) ;
+        mockSensorService = Mockito.mock(SensorService.class) ;
+        mockReadingInputRequestAdaptor = Mockito.mock(ReadingInputRequestAdaptor.class) ;
+
         controllerUnderTest = new CarbonDioxideDataController();
 
-        controllerUnderTest.setAddCarbonReadingRequestAdaptor(addReadingRequestAdaptor);
-        controllerUnderTest.setReadingService(readingService);
+        controllerUnderTest.setReadingService(mockReadingService);
+        controllerUnderTest.setSensorService(mockSensorService);
+        controllerUnderTest.setReadingInputRequestAdaptor(mockReadingInputRequestAdaptor);
     }
 
     @Test(expected = IValidationException.class)
     public void testAddReadingWithNullRequest() {
 
-        final CarbonReadingInputRequest readingRequest = null;
+        final ReadingInputRequest readingRequest = null;
 
         controllerUnderTest.addReading(readingRequest) ;
     }
@@ -48,7 +52,7 @@ public class CarbonDioxideDataControllerTest {
     @Test(expected = IValidationException.class)
     public void testAddReadingWithInvalidRequest() {
 
-        final CarbonReadingInputRequest readingRequest = new CarbonReadingInputRequest();
+        final ReadingInputRequest readingRequest = new ReadingInputRequest();
         readingRequest.setSensorId(2L);
 
         controllerUnderTest.addReading(readingRequest) ;
@@ -57,23 +61,21 @@ public class CarbonDioxideDataControllerTest {
     @Test
     public void testAddReading() {
 
-        final CarbonReadingInputRequest readingRequest = new CarbonReadingInputRequest();
+        final ReadingInputRequest readingRequest = new ReadingInputRequest();
         readingRequest.setSensorId(2L);
         readingRequest.setDate(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime());
         readingRequest.setCarbonValue(336F);
 
-        final Reading reading = Mockito.mock(Reading.class);
-        final CarbonDioxideValueAddResult serviceResponse = Mockito.mock(CarbonDioxideValueAddResult.class);
+        final ReadingInputCommand command = Mockito.mock(ReadingInputCommand.class);
+        final ReadingInputResult readingResult = Mockito.mock(ReadingInputResult.class);
 
-        Mockito.when(addReadingRequestAdaptor.adopt(readingRequest)).thenReturn(reading) ;
-        Mockito.when(readingService.addReading(reading)).thenReturn(reading) ;
+        Mockito.when(mockReadingInputRequestAdaptor.adopt(readingRequest)).thenReturn(command) ;
+        Mockito.when(mockReadingService.addReading(command)).thenReturn(readingResult) ;
 
-        final ResponseEntity<Reading> result = controllerUnderTest.addReading(readingRequest);
+        final ResponseEntity<ReadingInputResult> result = controllerUnderTest.addReading(readingRequest);
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK) ;
-        Assertions.assertThat(result.getBody()).isEqualTo(reading) ;
+        Assertions.assertThat(result.getBody()).isEqualTo(readingResult) ;
     }
-
-
 }

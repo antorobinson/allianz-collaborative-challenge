@@ -6,7 +6,10 @@ import com.allianz.carbondioxidetracker.common.IEmptyValidation;
 import com.allianz.carbondioxidetracker.common.IValidationException;
 import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.repository.ReadingRepository;
+import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
+import com.allianz.carbondioxidetracker.service.ReadingInputResult;
 import com.allianz.carbondioxidetracker.service.ReadingService;
+import com.allianz.carbondioxidetracker.service.adaptors.ReadingInputCommandAdaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +17,29 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ReadingServiceImpl implements ReadingService {
+class ReadingServiceImpl implements ReadingService {
 	
 	private ReadingRepository readingRepository;
 
+	private ReadingInputCommandAdaptor readingInputCommandAdaptor;
+
+
 	@Override
-	public Reading addReading(Reading reading) {
+	public ReadingInputResult addReading(ReadingInputCommand command) {
+
+		Reading reading = readingInputCommandAdaptor.adopt(command) ;
 
 		if (IEmptyValidation.isEmpty(reading)) {
-			throw IValidationException.of(ErrorCode.NULL_REQUEST, ErrorMessage.NULL_REQUEST.getValue()) ;
+			throw IValidationException.of(ErrorCode.NULL_COMMAND, ErrorMessage.NULL_COMMAND.getValue()) ;
 		}
 
+		reading = readingRepository.save(reading) ;
 
-
-		return readingRepository.save(reading) ;
+		return ReadingInputResult.builder()
+				.setId(reading.getId())
+				.setDate(reading.getTime())
+				.setReadingValue(reading.getReadingValue())
+				.build() ;
 	}
 
 	@Override
@@ -48,5 +60,8 @@ public class ReadingServiceImpl implements ReadingService {
 		this.readingRepository = repository;
 	}
 
-
+	@Autowired
+	void setReadingInputCommandAdaptor(ReadingInputCommandAdaptor adaptor) {
+		this.readingInputCommandAdaptor = adaptor;
+	}
 }
