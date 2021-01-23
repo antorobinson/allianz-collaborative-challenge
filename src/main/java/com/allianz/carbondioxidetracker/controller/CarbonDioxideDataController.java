@@ -21,5 +21,7 @@ public class CarbonDioxideDataController {
 		
 		return ResponseEntity.ok().body("Success");
 	}
+	
+	
 
 }
