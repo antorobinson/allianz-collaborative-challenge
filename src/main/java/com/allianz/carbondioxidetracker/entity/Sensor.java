@@ -1,12 +1,14 @@
 package com.allianz.carbondioxidetracker.entity;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,8 +27,24 @@ public class Sensor {
 	private String district;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Reading> sensorReadings;
+	@JoinColumn(name = "FK_SENSOR_READING", referencedColumnName="SENSOR_ID")
+	private List<Reading> sensorReadings=new ArrayList<>();
 	
+	public Sensor(){
+		
+	}
+
+	/**
+	 * @param sensorId
+	 * @param city
+	 * @param district
+	 */
+	public Sensor(String sensorId, String city, String district) {
+		super();
+		this.sensorId = sensorId;
+		this.city = city;
+		this.district = district;
+	}
 
 	public String getSensorId() {
 		return sensorId;

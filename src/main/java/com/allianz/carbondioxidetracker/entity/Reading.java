@@ -17,11 +17,21 @@ public class Reading {
     @Column(name="TIME")
     private Date time;
 
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="SENSOR_ID")
-    private Sensor sensor;
+    public Reading(){
+    	
+    }
+    
+    /**
+	 * @param readingValue
+	 * @param time
+	 */
+	public Reading(Float readingValue, Date time) {
+		super();
+		this.readingValue = readingValue;
+		this.time = time;
+	}
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
@@ -45,4 +55,5 @@ public class Reading {
     public void setTime(Date time) {
         this.time = time;
     }
+
 }

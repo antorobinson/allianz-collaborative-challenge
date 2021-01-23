@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/v1/co2")
 public class CarbonDioxideDataController {
+	
+	
 
 
 	private AddReadingRequestAdaptor addReadingRequestAdaptor;
