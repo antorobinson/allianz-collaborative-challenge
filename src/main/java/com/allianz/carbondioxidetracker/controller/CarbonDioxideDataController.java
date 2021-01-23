@@ -6,6 +6,7 @@ import com.allianz.carbondioxidetracker.common.IEmptyValidation;
 import com.allianz.carbondioxidetracker.common.IValidationException;
 import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.service.ReadingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,11 +40,13 @@ public class CarbonDioxideDataController {
 		return ResponseEntity.ok().body("Success");
 	}
 
-	public void setAddCarbonReadingRequestAdaptor(AddReadingRequestAdaptor adaptor) {
+	@Autowired
+	void setAddCarbonReadingRequestAdaptor(AddReadingRequestAdaptor adaptor) {
 		this.addReadingRequestAdaptor = adaptor;
 	}
 
-	public void setReadingService(ReadingService service) {
+	@Autowired
+	void setReadingService(ReadingService service) {
 		this.readingService = service;
 	}
 
