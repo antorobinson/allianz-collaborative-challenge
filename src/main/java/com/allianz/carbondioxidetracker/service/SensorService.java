@@ -8,7 +8,11 @@ public interface SensorService {
 
 	 public List<Sensor> retrieveSensors();
 	  
-	 public Sensor getSensor(String sensorId);
+	 public Sensor getSensorById(String sensorId);
 	  
 	 public void saveSensor(Sensor sensor);
+	 
+	 public void getSensorReadingsByCity(String city);
+	 
+	 public void getSensorReadingsByDistrict(String district);
 }
