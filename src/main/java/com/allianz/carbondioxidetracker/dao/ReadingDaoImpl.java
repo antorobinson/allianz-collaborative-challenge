@@ -1,11 +1,11 @@
 package com.allianz.carbondioxidetracker.dao;
 
+import com.allianz.carbondioxidetracker.common.RepositoryAdaptor;
 import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.repository.ReadingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+@RepositoryAdaptor
 class ReadingDaoImpl implements ReadingDao {
 
     private ReadingRepository readingRepository ;

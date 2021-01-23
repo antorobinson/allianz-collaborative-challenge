@@ -2,7 +2,9 @@ package com.allianz.carbondioxidetracker.controller;
 
 import com.allianz.carbondioxidetracker.common.ISelfValidation;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class AddCarbonReadingRequest extends ISelfValidation {

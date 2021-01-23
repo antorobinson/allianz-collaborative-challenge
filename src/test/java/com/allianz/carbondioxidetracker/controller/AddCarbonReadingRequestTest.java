@@ -1,6 +1,5 @@
 package com.allianz.carbondioxidetracker.controller;
 
-import com.allianz.carbondioxidetracker.controller.AddCarbonReadingRequest;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
