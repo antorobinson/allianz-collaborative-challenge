@@ -1,4 +1,4 @@
-package com.allianz.carbondioxidetracker.service.impl;
+package com.allianz.carbondioxidetracker.service.impls;
 
 import java.util.List;
 import java.util.Optional;

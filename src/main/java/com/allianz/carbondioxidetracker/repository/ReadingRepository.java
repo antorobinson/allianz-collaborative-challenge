@@ -1,9 +1,8 @@
 package com.allianz.carbondioxidetracker.repository;
 
+import com.allianz.carbondioxidetracker.entity.Reading;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.allianz.carbondioxidetracker.entity.Reading;
-
-public interface ReadingRepository extends JpaRepository<Reading,Long> {
+public interface ReadingRepository extends JpaRepository<Reading, Long> {
 
 }

@@ -1,12 +1,6 @@
 package com.allianz.carbondioxidetracker.service;
 
-import org.json.JSONObject;
+public interface CarbonDioxideDataService {
 
-public class CarbonDioxideDataService {
-	
-	public JSONObject addDevice(){
-		return null;
-		
-	}
-
+    CarbonDioxideValueAddResult addCarbonDioxideValue(CarbonDioxideValueAddCommand command) ;
 }

@@ -1,4 +1,4 @@
-package com.allianz.carbon_dioxide_tracker;
+package com.allianz.carbondioxidetracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

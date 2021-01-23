@@ -1,5 +1,12 @@
 package com.allianz.carbondioxidetracker.controller;
 
+import com.allianz.carbondioxidetracker.boundary.adaptors.AddReadingRequestAdaptor;
+import com.allianz.carbondioxidetracker.common.ErrorMessages;
+import com.allianz.carbondioxidetracker.common.IEmptyValidation;
+import com.allianz.carbondioxidetracker.common.IValidationException;
+import com.allianz.carbondioxidetracker.entity.Reading;
+import com.allianz.carbondioxidetracker.service.ReadingService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,21 +14,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/carbonDioxideData")
+@RequestMapping("/v1/co2")
 public class CarbonDioxideDataController {
 
-	@PostMapping("/SensorReadings")
-	public ResponseEntity<String> addReading(){
-		
-		return ResponseEntity.status(201).body("Success");
+
+	private AddReadingRequestAdaptor addReadingRequestAdaptor;
+
+//	private CarbonDioxideDataService carbonDioxideDataService;
+
+	private ReadingService readingService;
+
+	@PostMapping
+	public ResponseEntity<Reading> addReading(AddCarbonReadingRequest request) {
+
+		if (IEmptyValidation.isEmpty(request)) throw IValidationException.withMessage(ErrorMessages.NULL_REQUEST) ;
+
+		request.validateSelf() ;
+
+		final Reading reading = addReadingRequestAdaptor.adopt(request) ;
+
+		return new ResponseEntity<>(readingService.addReading(reading), HttpStatus.OK) ;
 	}
 	
-	@GetMapping("/SensorReadings/reading")
+	@GetMapping
 	public ResponseEntity<String> getReadingPerCity(){
 		
 		return ResponseEntity.ok().body("Success");
 	}
-	
-	
 
+	public void setAddCarbonReadingRequestAdaptor(AddReadingRequestAdaptor adaptor) {
+		this.addReadingRequestAdaptor = adaptor;
+	}
+
+	public void setReadingService(ReadingService service) {
+		this.readingService = service;
+	}
+
+	//	public void setCarbonDioxideDataService(CarbonDioxideDataService service) {
+//		this.carbonDioxideDataService = service;
+//	}
 }

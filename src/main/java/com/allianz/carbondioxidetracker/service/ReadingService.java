@@ -1,14 +1,14 @@
 package com.allianz.carbondioxidetracker.service;
 
-import java.util.List;
-
 import com.allianz.carbondioxidetracker.entity.Reading;
+
+import java.util.List;
 
 public interface ReadingService {
 
-	 public List<Reading> retrieveReadings();
+	Reading addReading(Reading command) ;
+
+	List<Reading> retrieveReadings();
 	  
-	 public Reading getReading(Long readingId);
-	  
-	 public void saveReading(Reading reading);
+	Reading getReading(Long readingId);
 }
