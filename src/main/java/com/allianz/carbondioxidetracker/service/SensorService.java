@@ -1,8 +1,8 @@
 package com.allianz.carbondioxidetracker.service;
 
-import java.util.List;
-
 import com.allianz.carbondioxidetracker.entity.Sensor;
+
+import java.util.List;
 
 public interface SensorService {
 

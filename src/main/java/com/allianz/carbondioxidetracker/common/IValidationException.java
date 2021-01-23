@@ -1,12 +1,13 @@
 package com.allianz.carbondioxidetracker.common;
 
-public final class IValidationException extends RuntimeException {
+public final class IValidationException extends IServiceRuntimeException {
 
-    public IValidationException(String message) {
-        super(message);
+
+    public IValidationException(ErrorCode errorCode, String errorMessage) {
+        super(errorCode, errorMessage);
     }
 
-    public static IValidationException withMessage(String message) {
-        return new IValidationException(message) ;
+    public static IValidationException of(ErrorCode errorCode, String errorMessage) {
+        return new IValidationException(errorCode, errorMessage) ;
     }
 }

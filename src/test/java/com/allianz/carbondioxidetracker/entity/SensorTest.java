@@ -1,15 +1,10 @@
 package com.allianz.carbondioxidetracker.entity;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class SensorTest {
 

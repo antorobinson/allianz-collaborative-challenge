@@ -7,6 +7,10 @@ public class IServiceRuntimeExceptionTest {
 
     @Test
     public void testWithMessage() {
-        Assertions.assertThat(IServiceRuntimeException.withMessage("message").getMessage()).isEqualTo("message") ;
+        Assertions.assertThat(
+                IServiceRuntimeException.of(
+                        ErrorCode.BAD_REQUEST, "message"
+                ).getMessage()
+        ).isEqualTo("message") ;
     }
 }

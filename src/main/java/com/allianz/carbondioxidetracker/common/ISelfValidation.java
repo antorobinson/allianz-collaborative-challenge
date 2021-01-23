@@ -28,7 +28,7 @@ public class ISelfValidation {
             stringBuilder.append(violation.getMessage()) ;
         }
 
-        throw IValidationException.withMessage(stringBuilder.toString());
+        throw IValidationException.of(ErrorCode.BAD_REQUEST, stringBuilder.toString());
     }
 
 }

@@ -2,11 +2,24 @@ package com.allianz.carbondioxidetracker.common;
 
 public class IServiceRuntimeException extends RuntimeException {
 
-    public IServiceRuntimeException(String message) {
-        super(message);
+    private final ErrorCode errorCode ;
+
+    public IServiceRuntimeException(ErrorCode errorCode, String errorMessage) {
+
+        super(errorMessage);
+        this.errorCode = errorCode;
     }
 
-    public static IServiceRuntimeException withMessage(String message) {
-        return new IServiceRuntimeException(message) ;
+    public static IServiceRuntimeException of(ErrorCode errorCode, String errorMessage) {
+        return new IServiceRuntimeException(errorCode, errorMessage) ;
     }
+
+    public ErrorCode getErrorCode() {
+        return errorCode;
+    }
+
+    public String getErrorMessage() {
+        return getMessage();
+    }
+
 }

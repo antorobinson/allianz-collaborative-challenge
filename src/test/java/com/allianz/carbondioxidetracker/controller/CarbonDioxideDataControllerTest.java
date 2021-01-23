@@ -3,8 +3,6 @@ package com.allianz.carbondioxidetracker.controller;
 import com.allianz.carbondioxidetracker.boundary.adaptors.AddReadingRequestAdaptor;
 import com.allianz.carbondioxidetracker.common.IValidationException;
 import com.allianz.carbondioxidetracker.entity.Reading;
-import com.allianz.carbondioxidetracker.service.CarbonDioxideDataService;
-import com.allianz.carbondioxidetracker.service.CarbonDioxideValueAddCommand;
 import com.allianz.carbondioxidetracker.service.CarbonDioxideValueAddResult;
 import com.allianz.carbondioxidetracker.service.ReadingService;
 import org.assertj.core.api.Assertions;

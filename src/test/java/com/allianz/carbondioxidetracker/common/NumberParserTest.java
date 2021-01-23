@@ -13,7 +13,6 @@ public class NumberParserTest {
         Assertions.assertThat(NumberParser.parseInt("s")).isZero() ;
     }
 
-
     @Test
     public void testParseDouble() {
 

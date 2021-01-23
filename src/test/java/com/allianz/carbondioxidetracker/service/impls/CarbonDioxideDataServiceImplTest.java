@@ -1,15 +1,6 @@
 package com.allianz.carbondioxidetracker.service.impls;
 
-import com.allianz.carbondioxidetracker.common.IValidationException;
-import com.allianz.carbondioxidetracker.entity.Reading;
-import com.allianz.carbondioxidetracker.dao.ReadingDao;
-import com.allianz.carbondioxidetracker.service.CarbonDioxideValueAddCommand;
-import com.allianz.carbondioxidetracker.service.CarbonDioxideValueAddResult;
-import org.assertj.core.api.Assertions;
-import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.Test;
-import org.mockito.Mockito;
 
 @Ignore
 public class CarbonDioxideDataServiceImplTest {

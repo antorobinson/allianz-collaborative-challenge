@@ -1,7 +1,5 @@
 package com.allianz.carbondioxidetracker.service.impls;
 
-import org.springframework.stereotype.Service;
-
 //@Service
 class CarbonDioxideDataServiceImpl /* implements CarbonDioxideDataService */{
 

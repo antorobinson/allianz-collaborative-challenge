@@ -7,6 +7,10 @@ public class IValidationExceptionTest {
 
     @Test
     public void testWithMessage() {
-        Assertions.assertThat(IValidationException.withMessage("message").getMessage()).isEqualTo("message") ;
+        Assertions.assertThat(
+                IValidationException.of(
+                        ErrorCode.NULL_REQUEST,  "message"
+                ).getMessage()
+        ).isEqualTo("message") ;
     }
 }

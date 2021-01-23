@@ -1,5 +1,6 @@
 package com.allianz.carbondioxidetracker.advice;
 
+import com.allianz.carbondioxidetracker.common.ErrorCode;
 import com.allianz.carbondioxidetracker.common.IServiceRuntimeException;
 import com.allianz.carbondioxidetracker.common.IValidationException;
 import org.assertj.core.api.Assertions;
@@ -9,19 +10,33 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 
-public class IServiceRuntimeExceptionControllerTest {
+public class ExceptionAdviceControllerTest {
 
-    private IServiceRuntimeExceptionController exceptionControllerUnderTest;
+    private ExceptionAdviceController exceptionControllerUnderTest;
 
     @Before
     public void setUp() {
-        exceptionControllerUnderTest = new IServiceRuntimeExceptionController();
+        exceptionControllerUnderTest = new ExceptionAdviceController();
+    }
+
+    @Test
+    public void testIValidationException() {
+
+        final IValidationException exception = IValidationException
+                .of(ErrorCode.NULL_REQUEST, "message");
+
+        final ResponseEntity<Object> result = exceptionControllerUnderTest.exception(exception);
+
+        Assertions.assertThat(result).isNotNull() ;
+        Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST) ;
+        Assertions.assertThat(result.getHeaders().containsKey("error-message")).isTrue() ;
     }
 
     @Test
     public void testExceptionIServiceRuntimeException() {
 
-        final IServiceRuntimeException exception = new IServiceRuntimeException("message");
+        final IServiceRuntimeException exception = IServiceRuntimeException
+                .of(ErrorCode.NULL_REQUEST, "message");
 
         final ResponseEntity<Object> result = exceptionControllerUnderTest.exception(exception);
 

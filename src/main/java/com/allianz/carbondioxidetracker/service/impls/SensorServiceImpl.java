@@ -1,14 +1,13 @@
 package com.allianz.carbondioxidetracker.service.impls;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.allianz.carbondioxidetracker.entity.Sensor;
 import com.allianz.carbondioxidetracker.repository.SensorRepository;
 import com.allianz.carbondioxidetracker.service.SensorService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SensorServiceImpl implements SensorService{
