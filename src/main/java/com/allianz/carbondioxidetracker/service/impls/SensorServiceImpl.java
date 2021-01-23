@@ -26,7 +26,7 @@ public class SensorServiceImpl implements SensorService{
 	}
 
 	@Override
-	public Sensor getSensor(String sensorId) {
+	public Sensor getSensorById(String sensorId) {
 		Optional<Sensor> optSensor = sensorRepository.findById(sensorId);
 		return optSensor.get();
 	}
@@ -36,5 +36,18 @@ public class SensorServiceImpl implements SensorService{
 		sensorRepository.save(sensor);
 		
 	}
+
+	@Override
+	public void getSensorReadingsByCity(String city) {
+		
+		
+	}
+
+	@Override
+	public void getSensorReadingsByDistrict(String district) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }
