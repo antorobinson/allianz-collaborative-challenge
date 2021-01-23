@@ -1,8 +1,8 @@
 package com.allianz.carbondioxidetracker.service.impls;
 
 import com.allianz.carbondioxidetracker.common.IValidationException;
-import com.allianz.carbondioxidetracker.dao.ReadingDao;
 import com.allianz.carbondioxidetracker.entity.Reading;
+import com.allianz.carbondioxidetracker.repository.ReadingRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,17 +13,16 @@ import java.util.GregorianCalendar;
 
 public class ReadingServiceImplTest {
 
-    private ReadingDao mockReadingDao;
-
+    private ReadingRepository mockReadingRepository ;
     private ReadingServiceImpl readingServiceImplUnderTest;
 
     @Before
     public void setUp() {
 
-        mockReadingDao = Mockito.mock(ReadingDao.class) ;
+        mockReadingRepository = Mockito.mock(ReadingRepository.class) ;
         readingServiceImplUnderTest = new ReadingServiceImpl();
 
-        readingServiceImplUnderTest.setReadingDao(mockReadingDao);
+        readingServiceImplUnderTest.setReadingRepository(mockReadingRepository);
     }
 
     @Test(expected = IValidationException.class)
@@ -45,9 +44,8 @@ public class ReadingServiceImplTest {
         savedReading.setReadingValue(reading.getReadingValue());
         savedReading.setTime(reading.getTime());
 
-        Mockito.when(mockReadingDao.save(reading)).thenReturn(savedReading) ;
+        Mockito.when(mockReadingRepository.save(reading)).thenReturn(savedReading) ;
 
-        mockReadingDao.save(reading) ;
         final Reading result = readingServiceImplUnderTest.addReading(reading);
 
         Assertions.assertThat(result).isNotNull() ;

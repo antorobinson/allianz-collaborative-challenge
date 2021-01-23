@@ -40,7 +40,7 @@ public class CarbonDioxideDataControllerTest {
     @Test(expected = IValidationException.class)
     public void testAddReadingWithNullRequest() {
 
-        final AddCarbonReadingRequest readingRequest = null;
+        final CarbonReadingInputRequest readingRequest = null;
 
         controllerUnderTest.addReading(readingRequest) ;
     }
@@ -48,7 +48,7 @@ public class CarbonDioxideDataControllerTest {
     @Test(expected = IValidationException.class)
     public void testAddReadingWithInvalidRequest() {
 
-        final AddCarbonReadingRequest readingRequest = new AddCarbonReadingRequest();
+        final CarbonReadingInputRequest readingRequest = new CarbonReadingInputRequest();
         readingRequest.setSensorId(2L);
 
         controllerUnderTest.addReading(readingRequest) ;
@@ -57,8 +57,7 @@ public class CarbonDioxideDataControllerTest {
     @Test
     public void testAddReading() {
 
-
-        final AddCarbonReadingRequest readingRequest = new AddCarbonReadingRequest();
+        final CarbonReadingInputRequest readingRequest = new CarbonReadingInputRequest();
         readingRequest.setSensorId(2L);
         readingRequest.setDate(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime());
         readingRequest.setCarbonValue(336F);

@@ -1,6 +1,6 @@
 package com.allianz.carbondioxidetracker.boundary.impls;
 
-import com.allianz.carbondioxidetracker.controller.AddCarbonReadingRequest;
+import com.allianz.carbondioxidetracker.controller.CarbonReadingInputRequest;
 import com.allianz.carbondioxidetracker.entity.Reading;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -22,7 +22,7 @@ public class AddReadingRequestAdaptorImplTest {
     @Test
     public void testAdopt() {
 
-        final AddCarbonReadingRequest request = new AddCarbonReadingRequest();
+        final CarbonReadingInputRequest request = new CarbonReadingInputRequest();
 
         final Date date = new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime() ;
         request.setSensorId(1L);
@@ -40,7 +40,7 @@ public class AddReadingRequestAdaptorImplTest {
     @Test
     public void testAdoptNullRequest() {
 
-        final AddCarbonReadingRequest request = null;
+        final CarbonReadingInputRequest request = null;
 
         final Reading result = addCarbonReadingRequestAdaptorImplUnderTest.adopt(request);
         Assertions.assertThat(result).isNull();

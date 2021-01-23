@@ -7,7 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-public class AddCarbonReadingRequest extends ISelfValidation {
+public class CarbonReadingInputRequest extends ISelfValidation {
 
     @NotNull(message = "sensorId cannot be empty")
     @Min(value = 0, message = "sensorId must be greater than 0")

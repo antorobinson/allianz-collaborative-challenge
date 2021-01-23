@@ -23,8 +23,8 @@ public class ISelfValidation {
 
             if (stringBuilder.length() > 0) {
                 stringBuilder.append(" / ");
-
             }
+
             stringBuilder.append(violation.getMessage()) ;
         }
 

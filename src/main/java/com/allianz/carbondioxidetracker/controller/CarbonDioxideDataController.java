@@ -6,23 +6,20 @@ import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.service.ReadingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/co2")
 public class CarbonDioxideDataController {
 	
-	
-
-
 	private AddReadingRequestAdaptor addReadingRequestAdaptor;
-
-//	private CarbonDioxideDataService carbonDioxideDataService;
 
 	private ReadingService readingService;
 
+
 	@PostMapping
-	public IResponse<Reading> addReading(@RequestBody AddCarbonReadingRequest request) {
+	public IResponse<Reading> addReading(@RequestBody CarbonReadingInputRequest request) {
 
 		if (IEmptyValidation.isEmpty(request))
 			throw IValidationException.of(ErrorCode.NULL_REQUEST, ErrorMessage.NULL_REQUEST.getValue()) ;
@@ -31,11 +28,13 @@ public class CarbonDioxideDataController {
 
 		final Reading reading = addReadingRequestAdaptor.adopt(request) ;
 
-		return IResponseBuilder.builder(reading)
+		final Reading savedReading = readingService.addReading(reading) ;
+
+		return IResponseBuilder.builder(savedReading)
 				.setStatus(HttpStatus.OK)
 				.build() ;
 	}
-	
+
 	@GetMapping
 	public IResponse<String> getReadingPerCity() {
 
@@ -53,8 +52,4 @@ public class CarbonDioxideDataController {
 	void setReadingService(ReadingService service) {
 		this.readingService = service;
 	}
-
-	//	public void setCarbonDioxideDataService(CarbonDioxideDataService service) {
-//		this.carbonDioxideDataService = service;
-//	}
 }

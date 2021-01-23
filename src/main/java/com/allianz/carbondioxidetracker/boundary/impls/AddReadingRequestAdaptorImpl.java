@@ -3,7 +3,7 @@ package com.allianz.carbondioxidetracker.boundary.impls;
 
 import com.allianz.carbondioxidetracker.boundary.adaptors.AddReadingRequestAdaptor;
 import com.allianz.carbondioxidetracker.common.IEmptyValidation;
-import com.allianz.carbondioxidetracker.controller.AddCarbonReadingRequest;
+import com.allianz.carbondioxidetracker.controller.CarbonReadingInputRequest;
 import com.allianz.carbondioxidetracker.entity.Reading;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +25,7 @@ class AddReadingRequestAdaptorImpl implements AddReadingRequestAdaptor {
 //    }
 
     @Override
-    public Reading adopt(AddCarbonReadingRequest request) {
+    public Reading adopt(CarbonReadingInputRequest request) {
 
         if (IEmptyValidation.isEmpty(request)) return null ;
 

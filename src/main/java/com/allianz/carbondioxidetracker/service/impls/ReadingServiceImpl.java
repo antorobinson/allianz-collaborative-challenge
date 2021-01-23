@@ -4,7 +4,6 @@ import com.allianz.carbondioxidetracker.common.ErrorCode;
 import com.allianz.carbondioxidetracker.common.ErrorMessage;
 import com.allianz.carbondioxidetracker.common.IEmptyValidation;
 import com.allianz.carbondioxidetracker.common.IValidationException;
-import com.allianz.carbondioxidetracker.dao.ReadingDao;
 import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.repository.ReadingRepository;
 import com.allianz.carbondioxidetracker.service.ReadingService;
@@ -19,9 +18,6 @@ public class ReadingServiceImpl implements ReadingService {
 	
 	private ReadingRepository readingRepository;
 
-	private ReadingDao readingDao;
-
-
 	@Override
 	public Reading addReading(Reading reading) {
 
@@ -29,7 +25,9 @@ public class ReadingServiceImpl implements ReadingService {
 			throw IValidationException.of(ErrorCode.NULL_REQUEST, ErrorMessage.NULL_REQUEST.getValue()) ;
 		}
 
-		return readingDao.save(reading) ;
+
+
+		return readingRepository.save(reading) ;
 	}
 
 	@Override
@@ -44,10 +42,6 @@ public class ReadingServiceImpl implements ReadingService {
 		return optReading.get();
 	}
 
-	@Autowired
-	void setReadingDao(ReadingDao dao) {
-		this.readingDao = dao;
-	}
 
 	@Autowired
 	void setReadingRepository(ReadingRepository repository) {
