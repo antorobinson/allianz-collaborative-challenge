@@ -8,10 +8,7 @@ import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.service.ReadingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/co2")
@@ -25,7 +22,7 @@ public class CarbonDioxideDataController {
 	private ReadingService readingService;
 
 	@PostMapping
-	public ResponseEntity<Reading> addReading(AddCarbonReadingRequest request) {
+	public ResponseEntity<Reading> addReading(@RequestBody AddCarbonReadingRequest request) {
 
 		if (IEmptyValidation.isEmpty(request)) throw IValidationException.withMessage(ErrorMessages.NULL_REQUEST) ;
 
