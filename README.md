@@ -1,5 +1,5 @@
-## About Corbon Tracker
-Corbon Tracker expose the HTTP Rest API end points for tracking the Co2 values .
+## About Corbon-Tracker
+Corbon-Tracker expose the HTTP Rest API end points for tracking the Co2 values .
 This facilitate XXXX-YYYYY
 
 ### Goals
@@ -17,7 +17,7 @@ This facilitate XXXX-YYYYY
 ### Swagger Link 
 [aero-pay-swagger](https://xxyyy/).
 
-### aero-pay Application Prerequisites
+### Corbon-Tracker Application Prerequisites
 
 1. Configure DB properties like H2 host, credentials etc.
 2. Configure XXXX.
