@@ -12,5 +12,4 @@ public class CarbonDioxideTrackerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CarbonDioxideTrackerApplication.class, args);
 	}
-
 }

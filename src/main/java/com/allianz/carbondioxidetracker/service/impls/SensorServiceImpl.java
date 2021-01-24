@@ -37,14 +37,14 @@ class SensorServiceImpl implements SensorService {
 		if (!sensorWrapper.isPresent())
 			throw IValidationException.of(ErrorCode.SENSOR_NOT_FOUND, ErrorMessage.SENSOR_NOT_FOUND.getValue()) ;
 
-		final Sensor sensor = sensorWrapper.get() ;
+		Sensor sensor = sensorWrapper.get() ;
 
 		sensor.getSensorReadings().add(reading);
 
-		sensorRepository.save(sensor) ;
+		sensor = sensorRepository.save(sensor) ;
 
 		return ReadingInputResult.builder()
-				.setReadingId(reading.getId())
+				.setReadingId(sensor.getSensorReadings().get(sensor.getSensorReadings().size() - 1).getId())
 				.setSensorId(command.getSensorId())
 				.setDate(reading.getTime())
 				.setReadingValue(reading.getReadingValue())

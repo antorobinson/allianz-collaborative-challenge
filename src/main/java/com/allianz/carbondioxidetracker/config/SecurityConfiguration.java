@@ -13,7 +13,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/h2-ui/**").permitAll();
 
-  
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
