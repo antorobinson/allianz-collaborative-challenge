@@ -16,16 +16,16 @@ This facilitate XXXX-YYYYY
 
 ### API Execution Flow
 
-![API Execution Flow](./docs/images/API Execution Flow.png)
+![API Execution Flow](./docs/images/API-Execution-Flow.png)
 
 ### Add Reading API
 
-![Add Reading](./docs/images/Sequence diagram -addReading.png)
+![Add Reading](./docs/images/Sequence-diagram-addReading.png)
 
 
 ### Get Reading API
 
-![Get Reading](./docs/images/Sequence diagram - getReading.png)
+![Get Reading](./docs/images/Sequence-diagram-getReading.png)
 
 
 ### Swagger Link 
