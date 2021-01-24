@@ -5,6 +5,8 @@ import com.allianz.carbondioxidetracker.entity.Sensor;
 import java.util.List;
 
 public interface SensorService {
+	
+	 public Sensor addReading(ReadingInputCommand command);
 
 	 public List<Sensor> retrieveSensors();
 	  
@@ -12,7 +14,7 @@ public interface SensorService {
 	  
 	 public void saveSensor(Sensor sensor);
 	 
-	 public void getSensorReadingsByCity(String city);
+	 public List<Sensor> getSensorReadingsByCity(String city);
 	 
-	 public void getSensorReadingsByDistrict(String district);
+	 public List<Sensor> getSensorReadingsByDistrict(String district);
 }

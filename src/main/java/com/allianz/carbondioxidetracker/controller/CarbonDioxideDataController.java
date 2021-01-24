@@ -21,6 +21,7 @@ import com.allianz.carbondioxidetracker.common.IValidationException;
 import com.allianz.carbondioxidetracker.controller.adaptors.ReadingInputRequestAdaptor;
 import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.entity.Sensor;
+import com.allianz.carbondioxidetracker.repository.SensorRepository;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import com.allianz.carbondioxidetracker.service.ReadingInputResult;
 import com.allianz.carbondioxidetracker.service.ReadingService;
@@ -35,7 +36,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * This class contains various methods for serving HTTP requests (such as
@@ -117,6 +122,7 @@ public class CarbonDioxideDataController {
 		request.validateSelf() ;
 
 		final ReadingInputCommand command = readingInputRequestAdaptor.adopt(request) ;
+		//Use Sensor service, already created draft in Sensor Service
 		final ReadingInputResult result = readingService.addReading(command) ;
 
 		return IResponseBuilder.builder(result)
@@ -124,25 +130,33 @@ public class CarbonDioxideDataController {
 				.build() ;
 	}
 
-	@GetMapping
-	public ResponseEntity<Sensor> getReadingPerCity(){
-		
-		Date currentTime = CurrentTimeCalendar.getCurrentTimeUsingCalendar();
-		Reading reading = new Reading(Float.valueOf(420),currentTime);
-		
-		Sensor sensor = sensorService.getSensorById("TK01");
-		
-		sensor.getSensorReadings().add(reading);
-		
-		sensorService.saveSensor(sensor);
-		
-//		sensor.getSensorReadings().add(reading);
-//		
-//		sensorService.saveSensor(sensor);
-		
-		return ResponseEntity.ok().body(sensor);
 
+	@GetMapping("/readings/")
+	public ResponseEntity<List<Sensor>> getReadingPerCity(
+			@PathVariable (value = "city") String city,
+			@RequestParam ("fromDate") Optional<String> fromDate,
+			@RequestParam ("toDate") Optional<String> toDate
+			) throws ParseException{
+		
+		Date fromD=null;
+		Date toD=null;
+
+		if(fromDate.isPresent()){
+			fromD = new SimpleDateFormat("dd-MM-yyyy").parse(fromDate.get());
+		}
+		if(toDate.isPresent()){
+			toD = new SimpleDateFormat("dd-MM-yyyy").parse(toDate.get());
+		}
+		if(fromD!=null&&toD!=null)
+			System.out.println(fromD+"  "+toD);
+		
+		List<Sensor> result = sensorService.getSensorReadingsByCity(city);
+		
+		return IResponseBuilder.builder(result)
+				.setStatus(HttpStatus.OK)
+				.build();
 	}
+	
 
 	@Autowired
 	void setReadingInputRequestAdaptor(ReadingInputRequestAdaptor adaptor) {
