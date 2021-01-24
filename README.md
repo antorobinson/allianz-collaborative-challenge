@@ -5,10 +5,10 @@ This facilitate XXXX-YYYYY
 ### Goals
 * Simple, flexible, extendable Co2 values tracker backend System
 
-### Design Inspiration Architecture from Industry Standard
+<!-- ### Design Inspiration Architecture from Industry Standard
 
 ![Design Inspiration Architecture](./docs/images/CleanArchitecture.jpg)
-![Design Inspiration Architecture](./docs/images/ddd.jpeg)
+![Design Inspiration Architecture](./docs/images/ddd.jpeg) -->
 
 ### Carbon-Tracker Application Architecture
 
@@ -40,5 +40,5 @@ This facilitate XXXX-YYYYY
 5. ZZZZZ etc. 
 
 **H2**
-6. XXXX [dbconfig](./docs/images/CleanArchitecture.jpg) 
-7. YYYY [dbconfig](./docs/images/CleanArchitecture.jpg)   
+<!-- 6. XXXX [dbconfig](./docs/images/CleanArchitecture.jpg) 
+7. YYYY [dbconfig](./docs/images/CleanArchitecture.jpg)    -->
