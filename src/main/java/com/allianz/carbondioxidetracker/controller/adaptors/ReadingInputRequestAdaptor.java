@@ -5,4 +5,5 @@ import com.allianz.carbondioxidetracker.controller.ReadingInputRequest;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 
 public interface ReadingInputRequestAdaptor extends IAdaptor<ReadingInputRequest, ReadingInputCommand> {
+	
 }

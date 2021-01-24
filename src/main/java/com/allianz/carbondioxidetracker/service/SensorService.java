@@ -16,6 +16,6 @@ public interface SensorService {
 	  
 	 public void saveSensor(Sensor sensor);
 	 
-	 public List<Sensor> search(ReadingGetRequest readingGetRequest) throws ParseException;
+	 public List<SensorGetResponse> search(ReadingGetRequest readingGetRequest) throws ParseException;
 	 
 }

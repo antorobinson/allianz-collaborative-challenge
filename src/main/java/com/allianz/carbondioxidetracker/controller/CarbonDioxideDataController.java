@@ -20,10 +20,10 @@ import com.allianz.carbondioxidetracker.common.IResponseBuilder;
 import com.allianz.carbondioxidetracker.common.IResponseBuilder.ResponseBody;
 import com.allianz.carbondioxidetracker.common.IValidationException;
 import com.allianz.carbondioxidetracker.controller.adaptors.ReadingInputRequestAdaptor;
-import com.allianz.carbondioxidetracker.entity.Sensor;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import com.allianz.carbondioxidetracker.service.ReadingInputResult;
 import com.allianz.carbondioxidetracker.service.ReadingService;
+import com.allianz.carbondioxidetracker.service.SensorGetResponse;
 import com.allianz.carbondioxidetracker.service.SensorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,10 +125,10 @@ public class CarbonDioxideDataController {
 	}
 
 	@GetMapping("/readings")
-	public ResponseEntity<ResponseBody<List<Sensor>>> getReadingPerCity(ReadingGetRequest readingGetRequest)
+	public ResponseEntity<ResponseBody<List<SensorGetResponse>>> getReadingPerCity(ReadingGetRequest readingGetRequest)
 			throws ParseException{
 		
-		List<Sensor> result = sensorService.search(readingGetRequest);
+		List<SensorGetResponse> result = sensorService.search(readingGetRequest);		
 		
 		return IResponseBuilder.builder(result)
 				.setStatus(HttpStatus.OK)
