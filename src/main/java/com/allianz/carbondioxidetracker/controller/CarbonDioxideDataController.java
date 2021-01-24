@@ -25,6 +25,7 @@ import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import com.allianz.carbondioxidetracker.service.ReadingInputResult;
 import com.allianz.carbondioxidetracker.service.ReadingService;
 import com.allianz.carbondioxidetracker.service.SensorService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +69,7 @@ import java.util.List;
  * @since 1.0
  */
 
+@Slf4j
 @RestController
 @RequestMapping("/v1/co2")
 public class CarbonDioxideDataController {
@@ -105,6 +107,7 @@ public class CarbonDioxideDataController {
 	public ResponseEntity<ResponseBody<ReadingInputResult>> addReading(
 			@RequestBody ReadingInputRequest request) {
 
+		log.info("request received in CarbonDioxideDataController.addReading{}", request);
 		final ReadingInputCommand command = readingInputRequestAdaptor.adopt(request) ;
 
 		if (IEmptyValidation.isEmpty(command))
@@ -114,11 +117,12 @@ public class CarbonDioxideDataController {
 
 		final ReadingInputResult result = sensorService.addReading(command) ;
 
+		log.info("result sent in CarbonDioxideDataController.addReading{}", result);
+
 		return IResponseBuilder.builder(result)
 				.setStatus(HttpStatus.OK)
 				.build() ;
 	}
-
 
 	@GetMapping("/readings")
 	public ResponseEntity<ResponseBody<List<Sensor>>> getReadingPerCity(ReadingGetRequest readingGetRequest)

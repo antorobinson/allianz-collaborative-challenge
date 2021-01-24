@@ -1,6 +1,8 @@
 package com.allianz.carbondioxidetracker.controller;
 
 import com.allianz.carbondioxidetracker.common.ISelfValidation;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -8,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+@Getter
+@Setter
 public class ReadingInputRequest extends ISelfValidation {
 
     @NotNull(message = "sensorId cannot be empty")
@@ -19,21 +23,4 @@ public class ReadingInputRequest extends ISelfValidation {
     @Min(value = 300, message = "carbonValue must be greater than 300")
     @Max(value = 400, message = "carbonValue must be lesser than 400")
     private Float carbonValue;
-
-    public String getSensorId() {
-        return sensorId;
-    }
-
-    public void setSensorId(String sensorId) {
-        this.sensorId = sensorId;
-    }
-
-    public Float getCarbonValue() {
-        return carbonValue;
-    }
-
-    public void setCarbonValue(Float carbonValue) {
-        this.carbonValue = carbonValue;
-    }
-
 }

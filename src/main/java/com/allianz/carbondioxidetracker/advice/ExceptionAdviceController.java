@@ -7,17 +7,22 @@ import com.allianz.carbondioxidetracker.common.IResponseBuilder;
 import com.allianz.carbondioxidetracker.common.IResponseBuilder.ResponseBody;
 import com.allianz.carbondioxidetracker.common.IServiceRuntimeException;
 import com.allianz.carbondioxidetracker.common.IValidationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+@Slf4j
 @ControllerAdvice
 class ExceptionAdviceController extends ExceptionController {
 
     @ExceptionHandler(value = IValidationException.class)
     public ResponseEntity<ResponseBody<Object>> exception(IValidationException exception) {
+
+        log.error(exception.getMessage(), exception);
+
         return getResponseBodyIResponse(
                 getExceptionMessage(exception), HttpStatus.BAD_REQUEST, exception.getErrorCode()
         );
@@ -25,6 +30,8 @@ class ExceptionAdviceController extends ExceptionController {
 
     @ExceptionHandler(value = IServiceRuntimeException.class)
     public IResponse<ResponseBody<Object>> exception(IServiceRuntimeException exception) {
+
+        log.error(exception.getMessage(), exception);
         return getResponseBodyIResponse(
                 getExceptionMessage(exception), HttpStatus.INTERNAL_SERVER_ERROR, exception.getErrorCode()
         );
@@ -32,6 +39,8 @@ class ExceptionAdviceController extends ExceptionController {
 
     @ExceptionHandler(NullPointerException.class)
     public final IResponse<ResponseBody<Object>> exception(NullPointerException exception) {
+
+        log.error(exception.getMessage(), exception);
         return getResponseBodyIResponse(
                 getExceptionMessage(exception), HttpStatus.INTERNAL_SERVER_ERROR, ErrorCode.INTERNAL_SERVER_ERROR
         );
@@ -39,6 +48,8 @@ class ExceptionAdviceController extends ExceptionController {
 
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
     public IResponse<ResponseBody<Object>> exception(HttpMessageNotReadableException exception) {
+
+        log.error(exception.getMessage(), exception);
         return getResponseBodyIResponse(
                 getExceptionMessage(exception), HttpStatus.INTERNAL_SERVER_ERROR, ErrorCode.INTERNAL_SERVER_ERROR
         );
