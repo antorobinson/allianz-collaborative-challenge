@@ -1,0 +1,61 @@
+***********************************************************************************
+API Execution
+
+title API Execution Flow
+
+actor   HTTPClient
+
+HTTPClient->RestController:Request
+note right of RestController:Receive Input Request
+RestController->RestController:validateRequest()
+RestController->RestController:adapt() Request to ServiceInput
+RestController->Service:Submit() ServiceInput to Service
+Service->Service:validateServiceInput()
+Service->Service:adapt() Request to ServiceInput to Repository
+Service->Repository:Submit() ReposistoryInput
+Repository-->Service:RepositoryOutput
+Service-->Service:Build() ServiceOutput from RepositoryOutput
+Service-->RestController:Receive ServiceOutput
+RestController-->RestController:Build() HTTP output from ServiceOutput
+RestController-->HTTPClient:Response
+
+
+***************************************************************************************
+Add Reading
+
+title Sequence diagram-addReading
+
+actor   HTTPClient
+
+HTTPClient->DataController:Request
+DataController->DataController:validateRequest()
+DataController-->HTTPClient:Response
+note right of HTTPClient: Response of Invalid Request
+DataController->SensorService: addReading()
+SensorService->SensorService:validateSensor()
+SensorService-->HTTPClient:Response
+note right of DataController: Response "Sensor not found"
+SensorService->SensorRepository:save()
+SensorRepository-->SensorService:<<Saved Data>>
+SensorService-->DataController:<<Saved Data>>
+DataController-->HTTPClient:Response
+note right of HTTPClient: Reading details with "Success"status
+
+******************************************************************************************
+Get Reading
+
+title  Sequence diagram - getReading
+
+actor   HTTPClient
+
+HTTPClient->DataController:Request
+DataController->SensorService:search()
+SensorService->sensorRepository:findByQuery()
+note right of SensorService:findAll()\nfindByCity()\nfindByDistrict()
+sensorRepository-->SensorService:<<ResultantList>>
+SensorService-->DataController:<<ResultantList>>
+DataController-->HTTPClient:Response
+note right of HTTPClient :Fetched details with "Success"status
+
+
+
