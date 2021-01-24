@@ -52,7 +52,6 @@ public class IResponseBuilder<T> {
         return this ;
     }
 
-
     public IResponseBuilder<T> setStatus(HttpStatus status) {
 
         this.status = status;

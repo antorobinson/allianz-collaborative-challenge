@@ -14,7 +14,6 @@ import com.allianz.carbondioxidetracker.service.SensorGetResponse;
 import com.allianz.carbondioxidetracker.service.SensorService;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingInputCommandAdaptor;
 import com.allianz.carbondioxidetracker.service.adaptors.SensorGetResponseAdaptor;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

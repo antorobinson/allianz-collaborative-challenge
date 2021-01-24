@@ -1,17 +1,16 @@
 package com.allianz.carbondioxidetracker.boundary;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.entity.Sensor;
 import com.allianz.carbondioxidetracker.service.ReadingGetResponse;
 import com.allianz.carbondioxidetracker.service.SensorGetResponse;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingGetResponseAdaptor;
 import com.allianz.carbondioxidetracker.service.adaptors.SensorGetResponseAdaptor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class SensorGetResponseAdaptorImpl implements SensorGetResponseAdaptor {
