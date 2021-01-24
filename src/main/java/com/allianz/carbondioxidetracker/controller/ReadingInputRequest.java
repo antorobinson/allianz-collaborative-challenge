@@ -1,10 +1,12 @@
 package com.allianz.carbondioxidetracker.controller;
 
 import com.allianz.carbondioxidetracker.common.ISelfValidation;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ReadingInputRequest extends ISelfValidation {
@@ -16,6 +18,18 @@ public class ReadingInputRequest extends ISelfValidation {
 //    @NotNull(message = "date cannot be empty")
 //    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date date;
+
+//    public LocalDateTime getTimestamp() {
+//        return timestamp;
+//    }
+//
+//    public void setTimestamp(LocalDateTime timestamp) {
+//        this.timestamp = timestamp;
+//    }
+
+//    @NotNull(message = "date cannot be empty")
+//    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
+//    private LocalDateTime timestamp;
 
     @NotNull(message = "carbonValue cannot be empty")
     @Min(value = 300, message = "carbonValue must be greater than 300")
