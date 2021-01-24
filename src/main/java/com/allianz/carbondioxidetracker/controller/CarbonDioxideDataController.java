@@ -1,3 +1,15 @@
+/*
+ * This is only for an interview purpose in Allianz Technology,
+ * This code is developed by 4 interview candidates.
+ * This is written in free version Java 8 .
+ * This is written in spring boot version 2.4.2 .
+ * This is an open source .
+ * This code meets most of the SOLID principles.
+ * No Copyrights or no rights reserved .
+ * Any one can use this code for their organization, personal or learning purposes.
+ * ANY ONE CAN ALTER THIS CODE OR THIS FILE.
+ */
+
 package com.allianz.carbondioxidetracker.controller;
 
 import com.allianz.carbondioxidetracker.common.ErrorCode;
@@ -64,7 +76,7 @@ public class CarbonDioxideDataController {
 	 *
 	 */
 	private ReadingService readingService;
-
+	
 	/**
 	 *
 	 */
@@ -75,7 +87,6 @@ public class CarbonDioxideDataController {
 	 *
 	 */
 	private ReadingInputRequestAdaptor readingInputRequestAdaptor;
-
 
 	/**
 	 * api end end point methode to post values
@@ -96,6 +107,7 @@ public class CarbonDioxideDataController {
 	 * @see IResponse and to know more about ReadingInputResult
 	 * @see ReadingInputResult .
 	 */
+
 	@PostMapping
 	public IResponse<ReadingInputResult> addReading(@RequestBody ReadingInputRequest request) {
 
