@@ -32,9 +32,4 @@ public class ReadingGetRequest {
 		this.toDate = toDate;
 	}
 
-	
-
-	
-	
-
 }

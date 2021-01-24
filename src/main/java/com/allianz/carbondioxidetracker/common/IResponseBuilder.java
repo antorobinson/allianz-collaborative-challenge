@@ -5,7 +5,12 @@ import org.springframework.http.HttpStatus;
 
 public class IResponseBuilder<T> {
 
-    private T body ;
+    private enum Message {
+        SUCCESS ,
+        NOT_SUCCESS
+    }
+
+    private final ResponseBody<T> responseBody = new ResponseBody<>() ;
     private HttpStatus status ;
 
     private HttpHeaders headers = null;
@@ -26,21 +31,27 @@ public class IResponseBuilder<T> {
         return builder ;
     }
 
-    public static Error error(Object obj) {
-        return new Error(obj) ;
+    public static Error error(ErrorCode errorCode, String errorMessage) {
+        return new Error(errorCode, errorMessage) ;
     }
 
 
-    public IResponse<T> build() {
-        return new IResponse<>(body, headers, status);
+    public IResponse<ResponseBody<T>> build() {
+        return new IResponse<>(responseBody, headers, status);
     }
-
 
     public IResponseBuilder<T> setBody(T body) {
 
-        this.body = body;
+        responseBody.setData(body);
         return this ;
     }
+
+    public IResponseBuilder<T> setError(Error error) {
+
+        responseBody.setError(error);
+        return this ;
+    }
+
 
     public IResponseBuilder<T> setStatus(HttpStatus status) {
 
@@ -59,16 +70,55 @@ public class IResponseBuilder<T> {
         return this ;
     }
 
-    public static class Error {
+    public static final class ResponseBody<T> {
 
-        private final Object errorCode;
+        private T data;
+        private Object error;
+        private Message message ;
 
-        Error(Object error) {
-            this.errorCode = error;
+        public T getData() {
+            return data;
+        }
+
+        public Object getError() {
+            return error;
+        }
+
+        public Message getMessage() {
+            return message;
+        }
+
+        void setData(T data) {
+
+            this.error = null;
+            message = Message.SUCCESS ;
+            this.data = data;
+        }
+
+        void setError(Object error) {
+
+            this.data = null;
+            message = Message.NOT_SUCCESS;
+            this.error = error;
+        }
+    }
+
+    public static final class Error {
+
+        private final ErrorCode errorCode;
+        private final String errorMessage;
+
+        Error(ErrorCode errorCode, String errorMessage) {
+            this.errorCode = errorCode;
+            this.errorMessage = errorMessage;
         }
 
         public Object getErrorCode() {
             return errorCode;
+        }
+
+        public String getErrorMessage() {
+            return errorMessage;
         }
     }
 }

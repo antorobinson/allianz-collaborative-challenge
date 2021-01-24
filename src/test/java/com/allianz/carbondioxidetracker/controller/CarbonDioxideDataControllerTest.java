@@ -1,5 +1,6 @@
 package com.allianz.carbondioxidetracker.controller;
 
+import com.allianz.carbondioxidetracker.common.IResponseBuilder.ResponseBody;
 import com.allianz.carbondioxidetracker.common.IValidationException;
 import com.allianz.carbondioxidetracker.controller.adaptors.ReadingInputRequestAdaptor;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
@@ -63,10 +64,11 @@ public class CarbonDioxideDataControllerTest {
         Mockito.when(mockReadingInputRequestAdaptor.adopt(readingRequest)).thenReturn(command) ;
         Mockito.when(mockSensorService.addReading(command)).thenReturn(readingResult) ;
 
-        final ResponseEntity<ReadingInputResult> result = controllerUnderTest.addReading(readingRequest);
+        final ResponseEntity<ResponseBody<ReadingInputResult>> result = controllerUnderTest
+                .addReading(readingRequest);
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK) ;
-        Assertions.assertThat(result.getBody()).isEqualTo(readingResult) ;
+        Assertions.assertThat(result.getBody().getData()).isEqualTo(readingResult) ;
     }
 }

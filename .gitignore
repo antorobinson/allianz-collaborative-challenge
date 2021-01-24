@@ -33,3 +33,7 @@ build/
 .vscode/
 devdb.trace.db
 devdb.mv.db
+src/main/java/com/allianz/carbondioxidetracker/.DS_Store
+docs/.DS_Store
+docs/images/.DS_Store
+.DS_Store

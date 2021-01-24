@@ -17,6 +17,7 @@ import com.allianz.carbondioxidetracker.common.ErrorMessage;
 import com.allianz.carbondioxidetracker.common.IEmptyValidation;
 import com.allianz.carbondioxidetracker.common.IResponse;
 import com.allianz.carbondioxidetracker.common.IResponseBuilder;
+import com.allianz.carbondioxidetracker.common.IResponseBuilder.ResponseBody;
 import com.allianz.carbondioxidetracker.common.IValidationException;
 import com.allianz.carbondioxidetracker.controller.adaptors.ReadingInputRequestAdaptor;
 import com.allianz.carbondioxidetracker.entity.Sensor;
@@ -28,18 +29,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * This class contains various methods for serving HTTP requests (such as
@@ -106,7 +102,8 @@ public class CarbonDioxideDataController {
 	 */
 
 	@PostMapping
-	public IResponse<ReadingInputResult> addReading(@RequestBody ReadingInputRequest request) {
+	public ResponseEntity<ResponseBody<ReadingInputResult>> addReading(
+			@RequestBody ReadingInputRequest request) {
 
 		final ReadingInputCommand command = readingInputRequestAdaptor.adopt(request) ;
 
@@ -124,7 +121,7 @@ public class CarbonDioxideDataController {
 
 
 	@GetMapping("/readings")
-	public ResponseEntity<List<Sensor>> getReadingPerCity(ReadingGetRequest readingGetRequest)
+	public ResponseEntity<ResponseBody<List<Sensor>>> getReadingPerCity(ReadingGetRequest readingGetRequest)
 			throws ParseException{
 		
 		List<Sensor> result = sensorService.search(readingGetRequest);

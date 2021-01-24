@@ -1,7 +1,7 @@
 package com.allianz.carbondioxidetracker.advice;
 
 import com.allianz.carbondioxidetracker.common.ErrorCode;
-import com.allianz.carbondioxidetracker.common.IResponseBuilder;
+import com.allianz.carbondioxidetracker.common.IResponseBuilder.ResponseBody;
 import com.allianz.carbondioxidetracker.common.IServiceRuntimeException;
 import com.allianz.carbondioxidetracker.common.IValidationException;
 import org.assertj.core.api.Assertions;
@@ -26,15 +26,11 @@ public class ExceptionAdviceControllerTest {
         final IValidationException exception = IValidationException
                 .of(ErrorCode.NULL_REQUEST, "message");
 
-        final ResponseEntity<Object> result = exceptionControllerUnderTest.exception(exception);
+        final ResponseEntity<ResponseBody<Object>> result = exceptionControllerUnderTest.exception(exception);
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST) ;
         Assertions.assertThat(result.getHeaders().containsKey("error-message")).isTrue() ;
-
-        IResponseBuilder.Error error = (IResponseBuilder.Error)result.getBody() ;
-        ErrorCode errorCode = (ErrorCode)error.getErrorCode() ;
-        Assertions.assertThat(errorCode).isEqualTo(ErrorCode.NULL_REQUEST) ;
     }
 
     @Test
@@ -43,15 +39,11 @@ public class ExceptionAdviceControllerTest {
         final IServiceRuntimeException exception = IServiceRuntimeException
                 .of(ErrorCode.NULL_REQUEST, "message");
 
-        final ResponseEntity<Object> result = exceptionControllerUnderTest.exception(exception);
+        final ResponseEntity<ResponseBody<Object>> result = exceptionControllerUnderTest.exception(exception);
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR) ;
         Assertions.assertThat(result.getHeaders().containsKey("error-message")).isTrue() ;
-
-        IResponseBuilder.Error error = (IResponseBuilder.Error)result.getBody() ;
-        ErrorCode errorCode = (ErrorCode)error.getErrorCode() ;
-        Assertions.assertThat(errorCode).isEqualTo(ErrorCode.NULL_REQUEST) ;
     }
 
     @Test
@@ -59,7 +51,7 @@ public class ExceptionAdviceControllerTest {
 
         final NullPointerException exception = new NullPointerException("message");
 
-        final ResponseEntity<Object> result = exceptionControllerUnderTest.exception(exception);
+        final ResponseEntity<ResponseBody<Object>> result = exceptionControllerUnderTest.exception(exception);
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR) ;
@@ -71,7 +63,7 @@ public class ExceptionAdviceControllerTest {
 
         final HttpMessageNotReadableException exception = new HttpMessageNotReadableException("message");
 
-        final ResponseEntity<Object> result = exceptionControllerUnderTest.exception(exception);
+        final ResponseEntity<ResponseBody<Object>> result = exceptionControllerUnderTest.exception(exception);
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR) ;
