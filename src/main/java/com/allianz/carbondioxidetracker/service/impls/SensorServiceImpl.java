@@ -16,8 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -96,14 +95,12 @@ class SensorServiceImpl implements SensorService {
 		this.readingInputCommandAdaptor = adaptor;
 	}
 
-	public List<Sensor> search(ReadingGetRequest readingGetRequest) throws ParseException{
+	public List<Sensor> search(ReadingGetRequest readingGetRequest){
 		
 		List<Sensor> readingList = null;
 		
 		String city=null;
 		String district=null;
-		Date fDate=null;
-		Date tDate=null;
 		
 		if(readingGetRequest.getCity() !=null ){
 			city=readingGetRequest.getCity().get();
@@ -111,36 +108,11 @@ class SensorServiceImpl implements SensorService {
 		if(readingGetRequest.getDistrict() !=null){
 			district=readingGetRequest.getDistrict().get();
 		}
-		if(readingGetRequest.getFromDate() !=null ){
-			fDate = new SimpleDateFormat("dd-MM-yyyy").parse(readingGetRequest.getFromDate().get());
-		}
-		if(readingGetRequest.getFromDate() !=null ){
-			tDate = new SimpleDateFormat("dd-MM-yyyy").parse(readingGetRequest.getToDate().get());
-		}
-
 		if(district != null){
-			if(fDate==null && tDate==null){
 				readingList=sensorRepository.findSensorByDistrict(district);
-			}
-			else if(tDate==null){
-				
-			}
-			else{
-				
-			}
-			
 		}
 		else if(city!=null){
-			if(fDate==null && tDate==null){
 				readingList=sensorRepository.findSensorByCity(city);
-			}
-			else if(tDate==null){
-				
-			}
-			else{
-				
-			}
-			
 		}
 		else
 			readingList=retrieveSensors();

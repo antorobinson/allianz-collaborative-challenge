@@ -45,13 +45,6 @@ class ExceptionAdviceController extends ExceptionController {
                 getExceptionMessage(exception), HttpStatus.INTERNAL_SERVER_ERROR, ErrorCode.INTERNAL_SERVER_ERROR
         );
     }
-    
-    @ExceptionHandler(value = ParseException.class)
-    public IResponse<ResponseBody<Object>> exception(ParseException exception) {
-        return getResponseBodyIResponse(
-                getExceptionMessage(exception), HttpStatus.INTERNAL_SERVER_ERROR, ErrorCode.INTERNAL_SERVER_ERROR
-        );
-    }
 
     private IResponse<ResponseBody<Object>> getResponseBodyIResponse(
             String message,
