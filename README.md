@@ -5,14 +5,14 @@ This facilitate XXXX-YYYYY
 ### Goals
 * Simple, flexible, extendable Co2 values tracker backend System
 
-### High Level Architecture
+### Design Inspiration Architecture from Industry Standard
 
-![Hight Level Architecture](./docs/images/CleanArchitecture.jpg)
+![Design Inspiration Architecture](./docs/images/CleanArchitecture.jpg)
+![Design Inspiration Architecture](./docs/images/ddd.jpeg)
 
+### Application Architecture
 
-### Network Diagram
-
-![Network Diagram](./docs/images/CleanArchitecture.jpg)
+![Application Architecture](./docs/images/CleanArchitecture.jpg)
 
 ### Swagger Link 
 [Corbon-Tracker-swagger](https://xxyyy/).
