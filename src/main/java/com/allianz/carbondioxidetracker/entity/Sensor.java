@@ -27,7 +27,7 @@ public class Sensor {
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "FK_SENSOR_READING", referencedColumnName="SENSOR_ID")
-	private List<Reading> sensorReadings=new ArrayList<>();
+	private List<Reading> sensorReadings = new ArrayList<>();
 	
 	public Sensor(){
 		

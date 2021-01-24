@@ -23,7 +23,6 @@ public class Reading {
     private Date time;
 
     public Reading(){
-    	
     }
     
     /**

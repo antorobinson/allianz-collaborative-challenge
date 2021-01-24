@@ -4,17 +4,23 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class SensorTest {
 
+    @Test
+    public void testConstructor() {
+
+        final Sensor sensor = new Sensor("TPK1" , "CITY" , "KNI") ;
+
+        Assertions.assertThat(sensor.getSensorId()).isEqualTo("TPK1") ;
+        Assertions.assertThat(sensor.getCity()).isEqualTo("CITY") ;
+        Assertions.assertThat(sensor.getDistrict()).isEqualTo("KNI") ;
+    }
 
     @Test
     public void testGettersAndSetters() {
 
         final Sensor entity = new Sensor() ;
-
-        final Date date = new Date() ;
 
         entity.setSensorId("sensorId");
         entity.setCity("city");

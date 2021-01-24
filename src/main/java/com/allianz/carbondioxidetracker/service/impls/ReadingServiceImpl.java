@@ -36,7 +36,7 @@ class ReadingServiceImpl implements ReadingService {
 		reading = readingRepository.save(reading) ;
 
 		return ReadingInputResult.builder()
-				.setId(reading.getId())
+				.setReadingId(reading.getId())
 				.setDate(reading.getTime())
 				.setReadingValue(reading.getReadingValue())
 				.build() ;

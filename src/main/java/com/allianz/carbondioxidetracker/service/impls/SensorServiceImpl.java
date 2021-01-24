@@ -11,11 +11,9 @@ import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import com.allianz.carbondioxidetracker.service.ReadingInputResult;
 import com.allianz.carbondioxidetracker.service.SensorService;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingInputCommandAdaptor;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,41 +24,31 @@ class SensorServiceImpl implements SensorService {
 	
 	private ReadingInputCommandAdaptor readingInputCommandAdaptor;
 	
-	private SensorService sensorService;
-	
-	@Autowired
-	public void setSensorService(SensorService sensorService) {
-		this.sensorService = sensorService;
-	}
-
-	@Autowired
-	public void setSensorRepository(SensorRepository sensorRepository) {
-		this.sensorRepository = sensorRepository;
-	}
-		
-	@Autowired
-	public void setReadingInputCommandAdaptor(ReadingInputCommandAdaptor readingInputCommandAdaptor) {
-		this.readingInputCommandAdaptor = readingInputCommandAdaptor;
-	}
-
 	@Override
-	public Sensor addReading(ReadingInputCommand command) {
-		Reading readingInput = readingInputCommandAdaptor.adopt(command) ;
+	public ReadingInputResult addReading(ReadingInputCommand command) {
 
-		if (IEmptyValidation.isEmpty(readingInput)) {
+		final Reading reading = readingInputCommandAdaptor.adopt(command) ;
+
+		if (IEmptyValidation.isEmpty(reading))
 			throw IValidationException.of(ErrorCode.NULL_COMMAND, ErrorMessage.NULL_COMMAND.getValue()) ;
-		}
-		
-		Date currentTime = new Date();
-		Reading reading = new Reading(readingInput.getReadingValue(),currentTime);
-		
-		//change to readingInput.getId() to String
-		Sensor sensor = sensorService.getSensorById("TK01");
-		sensor.getSensorReadings().add(reading);		
-		sensorService.saveSensor(sensor);
 
-		//create new response builder for sensor
-		return sensor;
+		final Optional<Sensor> sensorWrapper = sensorRepository.findById(command.getSensorId()) ;
+
+		if (!sensorWrapper.isPresent())
+			throw IValidationException.of(ErrorCode.SENSOR_NOT_FOUND, ErrorMessage.SENSOR_NOT_FOUND.getValue()) ;
+
+		final Sensor sensor = sensorWrapper.get() ;
+
+		sensor.getSensorReadings().add(reading);
+
+		sensorRepository.save(sensor) ;
+
+		return ReadingInputResult.builder()
+				.setReadingId(reading.getId())
+				.setSensorId(command.getSensorId())
+				.setDate(reading.getTime())
+				.setReadingValue(reading.getReadingValue())
+				.build() ;
 	}
 
 	@Override
@@ -94,7 +82,14 @@ class SensorServiceImpl implements SensorService {
 		return sensorReadings;
 	}
 
+	@Autowired
+	void setSensorRepository(SensorRepository sensorRepository) {
+		this.sensorRepository = sensorRepository;
+	}
 
-	
+	@Autowired
+	void setReadingInputCommandAdaptor(ReadingInputCommandAdaptor adaptor) {
+		this.readingInputCommandAdaptor = adaptor;
+	}
 
 }

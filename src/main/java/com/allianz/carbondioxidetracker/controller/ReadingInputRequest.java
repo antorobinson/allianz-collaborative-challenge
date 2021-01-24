@@ -5,49 +5,25 @@ import com.allianz.carbondioxidetracker.common.ISelfValidation;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import javax.validation.constraints.Size;
 
 public class ReadingInputRequest extends ISelfValidation {
 
     @NotNull(message = "sensorId cannot be empty")
-    @Min(value = 0, message = "sensorId must be greater than 0")
-    private Long sensorId;
-
-//    @NotNull(message = "date cannot be empty")
-//    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
-    private Date date;
-
-//    public LocalDateTime getTimestamp() {
-//        return timestamp;
-//    }
-//
-//    public void setTimestamp(LocalDateTime timestamp) {
-//        this.timestamp = timestamp;
-//    }
-
-//    @NotNull(message = "date cannot be empty")
-//    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
-//    private LocalDateTime timestamp;
+    @Size(min=2, max=30 , message = "sensorId must between 3 and 32")
+    private String sensorId;
 
     @NotNull(message = "carbonValue cannot be empty")
     @Min(value = 300, message = "carbonValue must be greater than 300")
     @Max(value = 400, message = "carbonValue must be lesser than 400")
     private Float carbonValue;
 
-    public Long getSensorId() {
+    public String getSensorId() {
         return sensorId;
     }
 
-    public void setSensorId(Long sensorId) {
+    public void setSensorId(String sensorId) {
         this.sensorId = sensorId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public Float getCarbonValue() {

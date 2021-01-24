@@ -18,7 +18,6 @@ class ReadingInputRequestAdaptorImpl implements ReadingInputRequestAdaptor {
         final ReadingInputCommand command = new ReadingInputCommand() ;
 
         command.setSensorId(request.getSensorId());
-        command.setDate(request.getDate());
         command.setCarbonValue(request.getCarbonValue());
 
         return command;

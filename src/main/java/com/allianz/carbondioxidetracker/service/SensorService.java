@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SensorService {
 	
-	 public Sensor addReading(ReadingInputCommand command);
+	 public ReadingInputResult addReading(ReadingInputCommand command);
 
 	 public List<Sensor> retrieveSensors();
 	  

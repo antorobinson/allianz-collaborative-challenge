@@ -4,24 +4,33 @@ import java.util.Date;
 
 public class ReadingInputResult {
 
-    private Long id ;
+    private Long readingId;
+    private String sensorId;
     private Date date;
     private Float readingValue;
 
-    void setId(Long id) {
-        this.id = id;
+    void setReadingId(Long readingId) {
+        this.readingId = readingId;
+    }
+
+    void setSensorId(String sensorId) {
+        this.sensorId = sensorId;
     }
 
     void setDate(Date date) {
         this.date = date;
     }
 
-    public void setReadingValue(Float readingValue) {
+    void setReadingValue(Float readingValue) {
         this.readingValue = readingValue;
     }
 
-    public Long getId() {
-        return id;
+    public Long getReadingId() {
+        return readingId;
+    }
+
+    public String getSensorId() {
+        return sensorId;
     }
 
     public Date getDate() {
@@ -48,10 +57,16 @@ public class ReadingInputResult {
             return entity ;
         }
 
-        public Builder setId(Long id) {
+        public Builder setReadingId(Long id) {
 
-            entity.setId(id);
+            entity.setReadingId(id);
             return this ;
+        }
+
+        public Builder setSensorId(String sensorId) {
+
+            entity.setSensorId(sensorId);
+            return this;
         }
 
         public Builder setDate(Date date) {

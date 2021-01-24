@@ -14,12 +14,10 @@ public class ReadingInputCommandTest {
         final ReadingInputCommand command = new ReadingInputCommand() ;
         final Date date = new Date() ;
 
-        command.setSensorId(2L);
-        command.setDate(date);
+        command.setSensorId("TPK1");
         command.setCarbonValue(8F);
 
-        Assertions.assertThat(command.getSensorId()).isEqualTo(2L) ;
-        Assertions.assertThat(command.getDate()).isEqualTo(date) ;
+        Assertions.assertThat(command.getSensorId()).isEqualTo("TPK1") ;
         Assertions.assertThat(command.getCarbonValue()).isEqualTo(8F) ;
 
     }

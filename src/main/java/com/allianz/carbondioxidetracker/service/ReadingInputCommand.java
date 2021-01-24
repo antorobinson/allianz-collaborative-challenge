@@ -1,27 +1,16 @@
 package com.allianz.carbondioxidetracker.service;
 
-import java.util.Date;
-
 public class ReadingInputCommand {
 
-    private Long sensorId;
-    private Date date;
+    private String sensorId;
     private Float carbonValue;
 
-    public Long getSensorId() {
+    public String getSensorId() {
         return sensorId;
     }
 
-    public void setSensorId(Long sensorId) {
+    public void setSensorId(String sensorId) {
         this.sensorId = sensorId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public Float getCarbonValue() {

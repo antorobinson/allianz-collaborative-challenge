@@ -6,6 +6,8 @@ import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingInputCommandAdaptor;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 class ReadingInputCommandAdaptorImpl implements ReadingInputCommandAdaptor {
 
@@ -16,7 +18,7 @@ class ReadingInputCommandAdaptorImpl implements ReadingInputCommandAdaptor {
 
         final Reading reading = new Reading() ;
 
-        reading.setTime(command.getDate());
+        reading.setTime(new Date());
         reading.setReadingValue(command.getCarbonValue()) ;
 
         return reading;

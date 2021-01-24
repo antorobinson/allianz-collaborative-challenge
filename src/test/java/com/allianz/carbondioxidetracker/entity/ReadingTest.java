@@ -8,6 +8,16 @@ import java.util.Date;
 public class ReadingTest {
 
     @Test
+    public void testConstructor() {
+
+        final Date date = new Date() ;
+        final Reading entity = new Reading(12F , date) ;
+
+        Assertions.assertThat(entity.getReadingValue()).isEqualTo(12F) ;
+        Assertions.assertThat(entity.getTime()).isEqualTo(date) ;
+    }
+
+    @Test
     public void testGettersAndSetters() {
 
         final Reading entity = new Reading() ;

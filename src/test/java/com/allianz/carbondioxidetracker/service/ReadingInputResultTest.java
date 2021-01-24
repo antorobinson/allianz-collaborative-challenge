@@ -20,7 +20,7 @@ public class ReadingInputResultTest {
         // Setup
 
         // Run the test
-        readingInputResultUnderTest.setId(0L);
+        readingInputResultUnderTest.setReadingId(0L);
 
         // Verify the results
     }

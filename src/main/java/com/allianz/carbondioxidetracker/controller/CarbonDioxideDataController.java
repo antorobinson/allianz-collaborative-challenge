@@ -19,21 +19,20 @@ import com.allianz.carbondioxidetracker.common.IResponse;
 import com.allianz.carbondioxidetracker.common.IResponseBuilder;
 import com.allianz.carbondioxidetracker.common.IValidationException;
 import com.allianz.carbondioxidetracker.controller.adaptors.ReadingInputRequestAdaptor;
-import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.entity.Sensor;
-import com.allianz.carbondioxidetracker.repository.SensorRepository;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import com.allianz.carbondioxidetracker.service.ReadingInputResult;
 import com.allianz.carbondioxidetracker.service.ReadingService;
 import com.allianz.carbondioxidetracker.service.SensorService;
-import com.allianz.carbondioxidetracker.util.CurrentTimeCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
@@ -116,14 +115,14 @@ public class CarbonDioxideDataController {
 	@PostMapping
 	public IResponse<ReadingInputResult> addReading(@RequestBody ReadingInputRequest request) {
 
-		if (IEmptyValidation.isEmpty(request))
+		final ReadingInputCommand command = readingInputRequestAdaptor.adopt(request) ;
+
+		if (IEmptyValidation.isEmpty(command))
 			throw IValidationException.of(ErrorCode.NULL_REQUEST, ErrorMessage.NULL_REQUEST.getValue()) ;
 
 		request.validateSelf() ;
 
-		final ReadingInputCommand command = readingInputRequestAdaptor.adopt(request) ;
-		//Use Sensor service, already created draft in Sensor Service
-		final ReadingInputResult result = readingService.addReading(command) ;
+		final ReadingInputResult result = sensorService.addReading(command) ;
 
 		return IResponseBuilder.builder(result)
 				.setStatus(HttpStatus.OK)
@@ -133,8 +132,8 @@ public class CarbonDioxideDataController {
 
 	@GetMapping("/readings/")
 	public ResponseEntity<List<Sensor>> getReadingPerCity(
-			@PathVariable (value = "city") String city,
-			@RequestParam ("fromDate") Optional<String> fromDate,
+			@PathVariable(value = "city") String city,
+			@RequestParam("fromDate") Optional<String> fromDate,
 			@RequestParam ("toDate") Optional<String> toDate
 			) throws ParseException{
 		

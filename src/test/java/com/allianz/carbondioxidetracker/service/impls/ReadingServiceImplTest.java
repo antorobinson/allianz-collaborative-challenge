@@ -11,9 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 public class ReadingServiceImplTest {
 
     private ReadingRepository mockReadingRepository ;
@@ -44,12 +41,10 @@ public class ReadingServiceImplTest {
 
         final ReadingInputCommand command = new ReadingInputCommand();
         command.setCarbonValue(0.0f);
-        command.setDate(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime());
 
         final Reading reading = new Reading();
         reading.setId(2L);
         reading.setReadingValue(command.getCarbonValue());
-        reading.setTime(command.getDate());
 
         Mockito.when(mockReadingInputCommandAdaptor.adopt(command)).thenReturn(reading) ;
         Mockito.when(mockReadingRepository.save(reading)).thenReturn(reading) ;
@@ -57,7 +52,7 @@ public class ReadingServiceImplTest {
         final ReadingInputResult result = readingServiceImplUnderTest.addReading(command);
 
         Assertions.assertThat(result).isNotNull() ;
-        Assertions.assertThat(result.getId()).isEqualTo(reading.getId()) ;
+        Assertions.assertThat(result.getReadingId()).isEqualTo(reading.getId()) ;
         Assertions.assertThat(result.getDate()).isEqualTo(reading.getTime()) ;
         Assertions.assertThat(result.getReadingValue()).isEqualTo(reading.getReadingValue()) ;
     }
