@@ -10,9 +10,23 @@ This facilitate XXXX-YYYYY
 ![Design Inspiration Architecture](./docs/images/CleanArchitecture.jpg)
 ![Design Inspiration Architecture](./docs/images/ddd.jpeg)
 
-### Corbon-Tracker Application Architecture
+### Carbon-Tracker Application Architecture
 
 ![Application Architecture](./docs/images/Corbon-Tracker-Application-Architecture.png)
+
+### API Execution Flow
+
+![API Execution Flow](./docs/images/API Execution Flow.png)
+
+### Add Reading API
+
+![Add Reading](./docs/images/Sequence diagram -addReading.png)
+
+
+### Get Reading API
+
+![Get Reading](./docs/images/Sequence diagram - getReading.png)
+
 
 ### Swagger Link 
 [Corbon-Tracker-swagger](https://xxyyy/).
