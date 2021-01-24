@@ -12,7 +12,7 @@ This facilitate XXXX-YYYYY
 
 ### Corbon-Tracker Application Architecture
 
-![Application Architecture](./docs/images/CleanArchitecture.jpg)
+![Application Architecture](./docs/images/Corbon-Tracker-Application-Architecture.png)
 
 ### Swagger Link 
 [Corbon-Tracker-swagger](https://xxyyy/).
