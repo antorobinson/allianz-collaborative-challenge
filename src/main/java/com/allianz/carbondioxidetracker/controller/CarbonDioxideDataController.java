@@ -75,6 +75,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/v1/co2")
 public class CarbonDioxideDataController {
+	
 
 	private SensorService sensorService;
 
@@ -122,26 +123,11 @@ public class CarbonDioxideDataController {
 	}
 
 
-	@GetMapping("/readings/")
-	public ResponseEntity<List<Sensor>> getReadingPerCity(
-			@PathVariable(value = "city") String city,
-			@RequestParam("fromDate") Optional<String> fromDate,
-			@RequestParam ("toDate") Optional<String> toDate
-			) throws ParseException{
+	@GetMapping("/readings")
+	public ResponseEntity<List<Sensor>> getReadingPerCity(ReadingGetRequest readingGetRequest)
+			throws ParseException{
 		
-		Date fromD=null;
-		Date toD=null;
-
-		if(fromDate.isPresent()){
-			fromD = new SimpleDateFormat("dd-MM-yyyy").parse(fromDate.get());
-		}
-		if(toDate.isPresent()){
-			toD = new SimpleDateFormat("dd-MM-yyyy").parse(toDate.get());
-		}
-		if(fromD!=null&&toD!=null)
-			System.out.println(fromD+"  "+toD);
-		
-		List<Sensor> result = sensorService.getSensorReadingsByCity(city);
+		List<Sensor> result = sensorService.search(readingGetRequest);
 		
 		return IResponseBuilder.builder(result)
 				.setStatus(HttpStatus.OK)
@@ -158,4 +144,5 @@ public class CarbonDioxideDataController {
 	public void setSensorService(SensorService sensorService) {
 		this.sensorService = sensorService;
 	}
+	
 }

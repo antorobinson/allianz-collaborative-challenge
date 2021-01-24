@@ -6,6 +6,9 @@ import com.allianz.carbondioxidetracker.common.IResponse;
 import com.allianz.carbondioxidetracker.common.IResponseBuilder;
 import com.allianz.carbondioxidetracker.common.IServiceRuntimeException;
 import com.allianz.carbondioxidetracker.common.IValidationException;
+
+import java.text.ParseException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -58,4 +61,15 @@ class ExceptionAdviceController extends ExceptionController {
                 .setBody(IResponseBuilder.error(ErrorCode.INTERNAL_SERVER_ERROR))
                 .build() ;
     }
+    
+    @ExceptionHandler(value = ParseException.class)
+    public IResponse<Object> exception(ParseException exception) {
+
+        return IResponseBuilder.builder()
+                .addHeader(ERROR_MESSAGE_KEY, getExceptionMessage(exception))
+                .addHeader(ERROR_DETAIL_KEY, getExceptionMessage(exception))
+                .setStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                .build() ;
+    }
+
 }

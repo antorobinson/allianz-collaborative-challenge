@@ -17,4 +17,7 @@ public interface SensorRepository extends JpaRepository<Sensor, String>{
 	@Query("SELECT s FROM Sensor s WHERE LOWER(s.district) = LOWER(:district)")
 	public List<Sensor> findSensorByDistrict(@Param("district") String district);
 	
+//	@Query("SELECT s FROM Sensor s inneJOIN s.sensorReadings r WHERE LOWER(s.city) = LOWER(:cityName) AND t.time > :fromDate")
+//	public List<Sensor> findSensorByCityAndFDate(@Param("cityName") String cityName, @Param("fromDate") Date fromDate);
+//	
 }

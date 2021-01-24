@@ -4,6 +4,7 @@ import com.allianz.carbondioxidetracker.common.ErrorCode;
 import com.allianz.carbondioxidetracker.common.ErrorMessage;
 import com.allianz.carbondioxidetracker.common.IEmptyValidation;
 import com.allianz.carbondioxidetracker.common.IValidationException;
+import com.allianz.carbondioxidetracker.controller.ReadingGetRequest;
 import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.entity.Sensor;
 import com.allianz.carbondioxidetracker.repository.SensorRepository;
@@ -13,6 +14,10 @@ import com.allianz.carbondioxidetracker.service.SensorService;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingInputCommandAdaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.util.List;
 import java.util.Optional;
@@ -69,14 +74,14 @@ class SensorServiceImpl implements SensorService {
 		
 	}
 
-	@Override
+
 	public List<Sensor> getSensorReadingsByCity(String city) {
 		List<Sensor> sensorReadings = sensorRepository.findSensorByCity(city);
 		return sensorReadings;
 		
 	}
 
-	@Override
+
 	public List<Sensor> getSensorReadingsByDistrict(String district) {
 		List<Sensor> sensorReadings = sensorRepository.findSensorByDistrict(district);
 		return sensorReadings;
@@ -90,6 +95,58 @@ class SensorServiceImpl implements SensorService {
 	@Autowired
 	void setReadingInputCommandAdaptor(ReadingInputCommandAdaptor adaptor) {
 		this.readingInputCommandAdaptor = adaptor;
+	}
+
+	public List<Sensor> search(ReadingGetRequest readingGetRequest) throws ParseException{
+		
+		List<Sensor> readingList = null;
+		
+		String city=null;
+		String district=null;
+		Date fDate=null;
+		Date tDate=null;
+		
+		if(readingGetRequest.getCity() !=null ){
+			city=readingGetRequest.getCity().get();
+		}
+		if(readingGetRequest.getDistrict() !=null){
+			district=readingGetRequest.getDistrict().get();
+		}
+		if(readingGetRequest.getFromDate() !=null ){
+			fDate = new SimpleDateFormat("dd-MM-yyyy").parse(readingGetRequest.getFromDate().get());
+		}
+		if(readingGetRequest.getFromDate() !=null ){
+			tDate = new SimpleDateFormat("dd-MM-yyyy").parse(readingGetRequest.getToDate().get());
+		}
+
+		if(district != null){
+			if(fDate==null && tDate==null){
+				readingList=sensorRepository.findSensorByDistrict(district);
+			}
+			else if(tDate==null){
+				
+			}
+			else{
+				
+			}
+			
+		}
+		else if(city!=null){
+			if(fDate==null && tDate==null){
+				readingList=sensorRepository.findSensorByCity(city);
+			}
+			else if(tDate==null){
+				
+			}
+			else{
+				
+			}
+			
+		}
+		else
+			readingList=retrieveSensors();
+		
+		return readingList;
 	}
 
 }

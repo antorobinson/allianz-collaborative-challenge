@@ -1,7 +1,9 @@
 package com.allianz.carbondioxidetracker.service;
 
+import com.allianz.carbondioxidetracker.controller.ReadingGetRequest;
 import com.allianz.carbondioxidetracker.entity.Sensor;
 
+import java.text.ParseException;
 import java.util.List;
 
 public interface SensorService {
@@ -14,7 +16,6 @@ public interface SensorService {
 	  
 	 public void saveSensor(Sensor sensor);
 	 
-	 public List<Sensor> getSensorReadingsByCity(String city);
+	 public List<Sensor> search(ReadingGetRequest readingGetRequest) throws ParseException;
 	 
-	 public List<Sensor> getSensorReadingsByDistrict(String district);
 }
