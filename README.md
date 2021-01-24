@@ -10,7 +10,7 @@ This facilitate XXXX-YYYYY
 ![Design Inspiration Architecture](./docs/images/CleanArchitecture.jpg)
 ![Design Inspiration Architecture](./docs/images/ddd.jpeg)
 
-### Application Architecture
+### Corbon-Tracker Application Architecture
 
 ![Application Architecture](./docs/images/CleanArchitecture.jpg)
 
