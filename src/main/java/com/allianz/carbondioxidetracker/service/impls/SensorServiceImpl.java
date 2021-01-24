@@ -10,8 +10,11 @@ import com.allianz.carbondioxidetracker.entity.Sensor;
 import com.allianz.carbondioxidetracker.repository.SensorRepository;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import com.allianz.carbondioxidetracker.service.ReadingInputResult;
+import com.allianz.carbondioxidetracker.service.SensorGetResponse;
 import com.allianz.carbondioxidetracker.service.SensorService;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingInputCommandAdaptor;
+import com.allianz.carbondioxidetracker.service.adaptors.SensorGetResponseAdaptor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,8 @@ class SensorServiceImpl implements SensorService {
 	private SensorRepository sensorRepository;
 	
 	private ReadingInputCommandAdaptor readingInputCommandAdaptor;
+	
+	private SensorGetResponseAdaptor sensorGetResponseAdaptor;
 	
 	@Override
 	public ReadingInputResult addReading(ReadingInputCommand command) {
@@ -83,17 +88,8 @@ class SensorServiceImpl implements SensorService {
 		return sensorReadings;
 	}
 
-	@Autowired
-	void setSensorRepository(SensorRepository sensorRepository) {
-		this.sensorRepository = sensorRepository;
-	}
 
-	@Autowired
-	void setReadingInputCommandAdaptor(ReadingInputCommandAdaptor adaptor) {
-		this.readingInputCommandAdaptor = adaptor;
-	}
-
-	public List<Sensor> search(ReadingGetRequest readingGetRequest){
+	public List<SensorGetResponse> search(ReadingGetRequest readingGetRequest){
 		
 		List<Sensor> readingList = null;
 		
@@ -115,7 +111,24 @@ class SensorServiceImpl implements SensorService {
 		else
 			readingList=retrieveSensors();
 		
-		return readingList;
+		List<SensorGetResponse> sensorReadingList = sensorGetResponseAdaptor.adopt(readingList);
+		
+		return sensorReadingList;
+	}
+	
+	@Autowired
+	void setSensorRepository(SensorRepository sensorRepository) {
+		this.sensorRepository = sensorRepository;
+	}
+
+	@Autowired
+	void setReadingInputCommandAdaptor(ReadingInputCommandAdaptor adaptor) {
+		this.readingInputCommandAdaptor = adaptor;
+	}
+	
+	@Autowired
+	public void setSensorGetResponseAdaptor(SensorGetResponseAdaptor sensorGetResponseAdaptor) {
+		this.sensorGetResponseAdaptor = sensorGetResponseAdaptor;
 	}
 
 
