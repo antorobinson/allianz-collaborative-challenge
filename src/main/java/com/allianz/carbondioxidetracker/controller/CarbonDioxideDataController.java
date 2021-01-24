@@ -26,9 +26,9 @@ import com.allianz.carbondioxidetracker.service.ReadingInputResult;
 import com.allianz.carbondioxidetracker.service.ReadingService;
 import com.allianz.carbondioxidetracker.service.SensorService;
 import com.allianz.carbondioxidetracker.util.CurrentTimeCalendar;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -76,7 +76,7 @@ public class CarbonDioxideDataController {
 	 *
 	 */
 	private ReadingService readingService;
-	
+
 	/**
 	 *
 	 */

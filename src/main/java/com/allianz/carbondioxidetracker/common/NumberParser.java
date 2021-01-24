@@ -45,6 +45,4 @@ public class NumberParser {
 
         return s.toString();
     }
-
-
 }
