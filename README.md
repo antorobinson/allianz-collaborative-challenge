@@ -12,7 +12,7 @@ This facilitate to keep track of the levels of CO2 across several city ,district
 
 ### Carbon-Tracker Application Architecture
 
-![Application Architecture](./docs/images/Corbon-Tracker-Application-Architecture.png)
+![Application Architecture](./docs/images/Carbon-Tracker-Application-Architecture.png)
 
 ### API Execution Flow
 
@@ -20,17 +20,17 @@ This facilitate to keep track of the levels of CO2 across several city ,district
 
 ### Add Reading API
 
-![Add Reading](./docs/images/Sequence-diagram-addReading.png)
+![Add Reading API](./docs/images/Sequence-diagram-addReading.png)
 
 
 ### Get Reading API
 
-![Get Reading](./docs/images/Sequence-diagram-getReading.png)
+![Get Reading API](./docs/images/Sequence-diagram-getReading.png)
 
 ### Entity Diagrams
 
-![ER Diagram](./docs/images/Acc-ERDiagram.vpd)
-![ER Class-Diagram](./docs/images/Entity_ClassDiagram)
+![ER Diagram](./docs/images/Acc-ERDiagram.pdf)
+![ER Class-Diagram](./docs/images/Entity_ClassDiagram.gif)
 
 
 ### Swagger Link 
