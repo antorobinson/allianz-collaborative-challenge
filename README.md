@@ -15,7 +15,7 @@ This facilitate XXXX-YYYYY
 ![Network Diagram](./docs/images/CleanArchitecture.jpg)
 
 ### Swagger Link 
-[aero-pay-swagger](https://xxyyy/).
+[Corbon-Tracker-swagger](https://xxyyy/).
 
 ### Corbon-Tracker Application Prerequisites
 
