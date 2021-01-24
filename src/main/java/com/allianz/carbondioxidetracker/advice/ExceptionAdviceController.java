@@ -13,8 +13,6 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.text.ParseException;
-
 @ControllerAdvice
 class ExceptionAdviceController extends ExceptionController {
 
