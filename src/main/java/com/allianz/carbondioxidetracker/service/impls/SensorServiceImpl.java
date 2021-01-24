@@ -39,9 +39,7 @@ class SensorServiceImpl implements SensorService {
 			throw IValidationException.of(ErrorCode.SENSOR_NOT_FOUND, ErrorMessage.SENSOR_NOT_FOUND.getValue()) ;
 
 		Sensor sensor = sensorWrapper.get() ;
-
 		sensor.getSensorReadings().add(reading);
-
 		sensor = sensorRepository.save(sensor) ;
 
 		return ReadingInputResult.builder()
