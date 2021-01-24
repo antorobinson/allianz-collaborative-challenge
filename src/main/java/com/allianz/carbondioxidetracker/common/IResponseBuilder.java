@@ -26,6 +26,11 @@ public class IResponseBuilder<T> {
         return builder ;
     }
 
+    public static Error error(Object obj) {
+        return new Error(obj) ;
+    }
+
+
     public IResponse<T> build() {
         return new IResponse<>(body, headers, status);
     }
@@ -52,6 +57,19 @@ public class IResponseBuilder<T> {
         headers.add(key, value);
 
         return this ;
+    }
+
+    public static class Error {
+
+        private final Object errorCode;
+
+        Error(Object error) {
+            this.errorCode = error;
+        }
+
+        public Object getErrorCode() {
+            return errorCode;
+        }
     }
 }
 

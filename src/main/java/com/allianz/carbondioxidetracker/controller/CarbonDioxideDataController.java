@@ -76,14 +76,6 @@ import java.util.Optional;
 @RequestMapping("/v1/co2")
 public class CarbonDioxideDataController {
 
-	/**
-	 *
-	 */
-	private ReadingService readingService;
-
-	/**
-	 *
-	 */
 	private SensorService sensorService;
 
 	/**
@@ -162,11 +154,6 @@ public class CarbonDioxideDataController {
 		this.readingInputRequestAdaptor = adaptor;
 	}
 
-	@Autowired
-	void setReadingService(ReadingService service) {
-		this.readingService = service;
-	}
-	
 	@Autowired
 	public void setSensorService(SensorService sensorService) {
 		this.sensorService = sensorService;

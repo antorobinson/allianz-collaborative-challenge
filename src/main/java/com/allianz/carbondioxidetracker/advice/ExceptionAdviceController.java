@@ -1,6 +1,7 @@
 package com.allianz.carbondioxidetracker.advice;
 
 
+import com.allianz.carbondioxidetracker.common.ErrorCode;
 import com.allianz.carbondioxidetracker.common.IResponse;
 import com.allianz.carbondioxidetracker.common.IResponseBuilder;
 import com.allianz.carbondioxidetracker.common.IServiceRuntimeException;
@@ -21,6 +22,7 @@ class ExceptionAdviceController extends ExceptionController {
                 .addHeader(ERROR_MESSAGE_KEY, getExceptionMessage(exception))
                 .addHeader(ERROR_DETAIL_KEY, getExceptionMessage(exception))
                 .setStatus(HttpStatus.BAD_REQUEST)
+                .setBody(IResponseBuilder.error(exception.getErrorCode()))
                 .build() ;
     }
 
@@ -31,6 +33,7 @@ class ExceptionAdviceController extends ExceptionController {
                 .addHeader(ERROR_MESSAGE_KEY, getExceptionMessage(exception))
                 .addHeader(ERROR_DETAIL_KEY, getExceptionMessage(exception))
                 .setStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                .setBody(IResponseBuilder.error(exception.getErrorCode()))
                 .build() ;
     }
 
@@ -41,6 +44,7 @@ class ExceptionAdviceController extends ExceptionController {
                 .addHeader(ERROR_MESSAGE_KEY, getExceptionMessage(exception))
                 .addHeader(ERROR_DETAIL_KEY, getExceptionMessage(exception))
                 .setStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                .setBody(IResponseBuilder.error(ErrorCode.INTERNAL_SERVER_ERROR))
                 .build() ;
     }
 
@@ -51,7 +55,7 @@ class ExceptionAdviceController extends ExceptionController {
                 .addHeader(ERROR_MESSAGE_KEY, getExceptionMessage(exception))
                 .addHeader(ERROR_DETAIL_KEY, getExceptionMessage(exception))
                 .setStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                .setBody(IResponseBuilder.error(ErrorCode.INTERNAL_SERVER_ERROR))
                 .build() ;
     }
-
 }
