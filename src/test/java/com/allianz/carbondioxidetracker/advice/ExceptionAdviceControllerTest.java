@@ -30,7 +30,7 @@ public class ExceptionAdviceControllerTest {
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST) ;
-        Assertions.assertThat(result.getHeaders().containsKey("error-message")).isTrue() ;
+        Assertions.assertThat(result.getHeaders().containsKey(ExceptionAdviceController.ERROR_MESSAGE_KEY)).isTrue() ;
     }
 
     @Test
@@ -43,7 +43,7 @@ public class ExceptionAdviceControllerTest {
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR) ;
-        Assertions.assertThat(result.getHeaders().containsKey("error-message")).isTrue() ;
+        Assertions.assertThat(result.getHeaders().containsKey(ExceptionAdviceController.ERROR_MESSAGE_KEY)).isTrue() ;
     }
 
     @Test
@@ -55,7 +55,7 @@ public class ExceptionAdviceControllerTest {
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR) ;
-        Assertions.assertThat(result.getHeaders().containsKey("error-detail")).isTrue() ;
+        Assertions.assertThat(result.getHeaders().containsKey(ExceptionAdviceController.ERROR_DETAIL_KEY)).isTrue() ;
     }
 
     @Test
@@ -67,6 +67,6 @@ public class ExceptionAdviceControllerTest {
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR) ;
-        Assertions.assertThat(result.getHeaders().containsKey("error-detail")).isTrue() ;
+        Assertions.assertThat(result.getHeaders().containsKey(ExceptionAdviceController.ERROR_DETAIL_KEY)).isTrue() ;
     }
 }

@@ -2,8 +2,8 @@ package com.allianz.carbondioxidetracker.advice;
 
 class ExceptionController {
 
-    public static final String ERROR_MESSAGE_KEY = "error-message" ;
-    public static final String ERROR_DETAIL_KEY = "error-detail" ;
+    public static final String ERROR_MESSAGE_KEY = "error-code" ;
+    public static final String ERROR_DETAIL_KEY = "error-message" ;
 
     public final String getExceptionMessage(Exception exception) {
 
