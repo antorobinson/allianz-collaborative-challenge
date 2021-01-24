@@ -30,11 +30,13 @@ This facilitate to keep track of the levels of CO2 across several city ,district
 ### Entity Diagrams
 
 ![ER Diagram](./docs/images/Acc-ERDiagram.pdf)
+
+### Class Diagram
 ![ER Class-Diagram](./docs/images/Entity_ClassDiagram.gif)
 
 
 ### Swagger Link 
-[Corbon-Tracker-swagger](https://xxyyy/).
+[Carbon-Tracker-swagger](https://xxyyy/).
 
 ### Carbon-Tracker Application Prerequisites
 
