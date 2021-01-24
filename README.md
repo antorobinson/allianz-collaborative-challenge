@@ -29,7 +29,7 @@ This facilitate to keep track of the levels of CO2 across several city ,district
 
 ### Entity Diagrams
 
-![ER Diagram](./docs/images/Acc-ERDiagram.png)
+![ER Diagram](./docs/images/ER-Diagram.png)
 
 ### Class Diagram
 ![ER Class-Diagram](./docs/images/Entity_ClassDiagram.png)
