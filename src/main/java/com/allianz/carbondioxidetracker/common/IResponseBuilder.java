@@ -35,7 +35,7 @@ public class IResponseBuilder<T> {
 
     public static <T> IResponseBuilder<T> builder() {
 
-        return new IResponseBuilder<T>() ;
+        return new IResponseBuilder<>() ;
     }
 
     public static <T> IResponseBuilder<T> builder(T body) {

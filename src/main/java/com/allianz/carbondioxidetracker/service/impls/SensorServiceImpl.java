@@ -156,9 +156,7 @@ class SensorServiceImpl implements SensorService {
 		else
 			readingList=retrieveSensors();
 		
-		List<SensorGetResponse> sensorReadingList = sensorGetResponseAdaptor.adopt(readingList);
-		
-		return sensorReadingList;
+		return sensorGetResponseAdaptor.adopt(readingList);
 	}
 	
 	/**
