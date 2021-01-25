@@ -25,6 +25,8 @@ import com.allianz.carbondioxidetracker.service.ReadingGetResponse;
  * See {@link ReadingGetResponse}
  * See {@link IAdaptor}
  * </p>
+ * @version v1
+ * @since 1.0
  */
 public interface ReadingGetResponseAdaptor extends IAdaptor<Reading, ReadingGetResponse> {
 	

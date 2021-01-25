@@ -30,6 +30,8 @@ import org.springframework.stereotype.Component;
  * See {@link ReadingInputCommand}
  * See {@link IAdaptor}
  * </p>
+ * @version v1
+ * @since 1.0
  */
 @Component
 class ReadingInputRequestAdaptorImpl implements ReadingInputRequestAdaptor {

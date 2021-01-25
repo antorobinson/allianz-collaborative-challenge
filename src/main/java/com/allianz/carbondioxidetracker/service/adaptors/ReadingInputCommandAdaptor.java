@@ -25,6 +25,8 @@ import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
  * See {@link Reading}
  * See {@link IAdaptor}
  * </p>
+ * @version v1
+ * @since 1.0
  */
 public interface ReadingInputCommandAdaptor extends IAdaptor<ReadingInputCommand, Reading> {
 }

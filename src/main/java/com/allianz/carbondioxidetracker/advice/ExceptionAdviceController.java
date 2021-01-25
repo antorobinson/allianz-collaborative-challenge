@@ -43,6 +43,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * See {@link HttpStatus}
  * See {@link ExceptionController#getExceptionMessage}
  * </p>
+ * @version v1
+ * @since 1.0
  */
 @ControllerAdvice
 class ExceptionAdviceController extends ExceptionController {

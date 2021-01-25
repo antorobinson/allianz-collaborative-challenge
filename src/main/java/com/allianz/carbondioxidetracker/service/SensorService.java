@@ -22,8 +22,11 @@ import java.text.ParseException;
 import java.util.List;
 
 /**
- * This service class is used to expose relevant CRUD operation on Sensor entity. @see SensorServiceImpl
- *
+ * This interface provides the interfaces of various methods that are used to perform CRUD
+ * operation on Service entity such as addReading, retriveSensors,
+ * getSensorById, saveSensor and search method
+ * @version v1
+ * @since 1.0
  */
 public interface SensorService {
 	

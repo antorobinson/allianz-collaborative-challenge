@@ -30,6 +30,8 @@ import java.util.Date;
  * See {@link Reading}
  * See {@link IAdaptor}
  * </p>
+ * @version v1
+ * @since 1.0
  */
 @Component
 class ReadingInputCommandAdaptorImpl implements ReadingInputCommandAdaptor {

@@ -25,6 +25,8 @@ import com.allianz.carbondioxidetracker.service.SensorGetResponse;
  * See {@link SensorGetResponse}
  * See {@link IAdaptor}
  * </p>
+ * @version v1
+ * @since 1.0
  */
 public interface SensorGetResponseAdaptor extends IAdaptor<Sensor, SensorGetResponse> {
 

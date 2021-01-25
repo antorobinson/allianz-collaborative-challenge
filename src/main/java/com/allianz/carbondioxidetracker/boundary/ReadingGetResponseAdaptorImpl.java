@@ -27,6 +27,8 @@ import org.springframework.stereotype.Component;
  * See {@link ReadingGetResponse}
  * See {@link IAdaptor}
  * </p>
+ * @version v1
+ * @since 1.0
  */
 @Component
 class ReadingGetResponseAdaptorImpl implements ReadingGetResponseAdaptor {
