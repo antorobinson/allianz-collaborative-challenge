@@ -51,7 +51,6 @@ public class Reading {
         this.readingValue = readingValue;
     }
 
-
     public Date getTime() {
         return time;
     }

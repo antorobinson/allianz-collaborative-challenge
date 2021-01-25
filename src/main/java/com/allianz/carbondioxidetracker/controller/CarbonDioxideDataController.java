@@ -28,7 +28,6 @@ import com.allianz.carbondioxidetracker.service.SensorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -73,38 +72,42 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/co2")
 public class CarbonDioxideDataController {
-	
-
-	private SensorService sensorService;
-
 	/**
-	 *
-	 *
+	 * sensorService interface is used to interact with UseCase in Service layer .
+	 * To sse the available UseCases see {@link SensorService}
+	 */
+	private SensorService sensorService;
+	/**
+	 * This Adaptor interface is used to convert the ReadingInputRequest to ReadingInputCommand.
+	 * To sse the available UseCases see {@link ReadingInputRequestAdaptor}
 	 */
 	private ReadingInputRequestAdaptor readingInputRequestAdaptor;
-
 	/**
-	 * api end end point methode to post values
+	 * This methode expose the api end point methode to post Reading values .
 	 * <p>
-	 *     receives ReadingInputRequest as a request and return IResponse<ReadingInputResult> as response
-	 *     To know more about ReadingInputRequest, see the {@link ReadingInputRequest)} class.
-	 *     To know more about IResponse, see the {@link IResponse)} class.
-	 *
+	 * <b> Execution steps </b>
+	 * 1. receives the request
+	 * 2. Convert request to command using readingInputRequestAdaptor
+	 * 3. Validate the request, command using IEmptyValidation & request.validateSelf()
+	 * 4. If Validate fails  throws IValidationException
+	 * 5. Submits the command to sensorService.addReading and get the result
+	 * 6. Submits the command to sensorService.addReading and get the result
+	 * 7. Build IResponse<ResponseBody<ReadingInputResult>> from result using IResponseBuilder
 	 * </p>
-	 *
-	 * @param request the input RequestBody of carbon values received from HTTP Post request.
-	 *
-	 *    If you want to see the
-	 * values of request
+	 * @param request ReadingInputRequest the input RequestBody of carbon values received from HTTP Post request.
+	 * If you want to see the values of request
 	 * @see ReadingInputRequest
-	 *
 	 * @return IResponse<ReadingInputResult> to know more about IResponse
 	 * @see IResponse and to know more about ReadingInputResult
-	 * @see ReadingInputResult .
+	 * @see IResponseBuilder and to know more about IResponseBuilder
+	 * @see IResponseBuilder.Message and to know more about Message
+	 * @see IResponseBuilder.ResponseBody and to know more about ResponseBody
+	 * @see IResponseBuilder.Error and to know more about Error
+	 * @see IEmptyValidation#isEmpty(Object) and to know more about IEmptyValidation
+	 * @see ReadingInputRequest#validateSelf() and to know more about self validation
 	 */
-
 	@PostMapping
-	public ResponseEntity<ResponseBody<ReadingInputResult>> addReading(
+	public IResponse<ResponseBody<ReadingInputResult>> addReading(
 			@RequestBody ReadingInputRequest request) {
 
 		log.info("request received in CarbonDioxideDataController.addReading{}", request);
@@ -125,7 +128,7 @@ public class CarbonDioxideDataController {
 	}
 
 	@GetMapping("/readings")
-	public ResponseEntity<ResponseBody<List<SensorGetResponse>>> getReadingPerCity(ReadingGetRequest readingGetRequest)
+	public IResponse<ResponseBody<List<SensorGetResponse>>> getReadingPerCity(ReadingGetRequest readingGetRequest)
 			throws ParseException{
 		
 		List<SensorGetResponse> result = sensorService.search(readingGetRequest);		
