@@ -119,11 +119,19 @@ class SensorServiceImpl implements SensorService {
 		
 	}
 
+	/**
+	 * @param city
+	 * @return the list of Sensors matching the given city name
+	 */
 	public List<Sensor> getSensorReadingsByCity(String city) {
 		return sensorRepository.findSensorByCity(city);
 		
 	}
 
+	/**
+	 * @param district
+	 * @return the list of Sensors matching the given district name
+	 */
 	public List<Sensor> getSensorReadingsByDistrict(String district) {
 		return sensorRepository.findSensorByDistrict(district);
 	}
