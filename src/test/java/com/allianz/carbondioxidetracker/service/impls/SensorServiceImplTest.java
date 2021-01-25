@@ -7,6 +7,7 @@ import com.allianz.carbondioxidetracker.repository.SensorRepository;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import com.allianz.carbondioxidetracker.service.ReadingInputResult;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingInputCommandAdaptor;
+import com.allianz.carbondioxidetracker.service.adaptors.SensorGetResponseAdaptor;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,17 +24,21 @@ public class SensorServiceImplTest {
 
     private ReadingInputCommandAdaptor mockReadingInputCommandAdaptor;
 
+    private SensorGetResponseAdaptor mockSensorGetResponseAdaptor;
+
     private SensorServiceImpl sensorServiceImplUnderTest;
 
     @Before
     public void setUp() {
 
         mockReadingInputCommandAdaptor = Mockito.mock(ReadingInputCommandAdaptor.class) ;
+        mockSensorGetResponseAdaptor = Mockito.mock(SensorGetResponseAdaptor.class) ;
         mockSensorRepository = Mockito.mock(SensorRepository.class) ;
 
         sensorServiceImplUnderTest = new SensorServiceImpl();
 
         sensorServiceImplUnderTest.setReadingInputCommandAdaptor(mockReadingInputCommandAdaptor);
+        sensorServiceImplUnderTest.setSensorGetResponseAdaptor(mockSensorGetResponseAdaptor);
         sensorServiceImplUnderTest.setSensorRepository(mockSensorRepository);
     }
 
@@ -121,5 +126,44 @@ public class SensorServiceImplTest {
         final Sensor result = sensorServiceImplUnderTest.getSensorById(sensorId);
 
         Assertions.assertThat(result).isEqualTo(sensor) ;
+    }
+
+    @Test
+    public void testSaveSensor() {
+
+        final Sensor sensor = new Sensor("sensorId", "city", "district");
+
+        Mockito.when(mockSensorRepository.save(sensor)).thenReturn(sensor) ;
+        sensorServiceImplUnderTest.saveSensor(sensor);
+
+        Mockito.verify(mockSensorRepository).save(sensor);
+    }
+
+    @Test
+    public void testGetSensorReadingsByCity() {
+
+        final String city = "city" ;
+        final List<Sensor> list = new ArrayList<>() ;
+        final Sensor sensor = new Sensor("sensorId", "city", "district") ;
+        list.add(sensor) ;
+
+        Mockito.when(mockSensorRepository.findSensorByCity(city)).thenReturn(list) ;
+        final List<Sensor> result = sensorServiceImplUnderTest.getSensorReadingsByCity(city);
+
+        Assertions.assertThat(result.size()).isEqualTo(1) ;
+    }
+
+    @Test
+    public void testGetSensorReadingsByDistrict() {
+
+        final String district = "district" ;
+        final List<Sensor> list = new ArrayList<>() ;
+        final Sensor sensor = new Sensor("sensorId", "city", "district") ;
+        list.add(sensor) ;
+
+        Mockito.when(mockSensorRepository.findSensorByDistrict(district)).thenReturn(list) ;
+        final List<Sensor> result = sensorServiceImplUnderTest.getSensorReadingsByDistrict(district);
+
+        Assertions.assertThat(result.size()).isEqualTo(1) ;
     }
 }

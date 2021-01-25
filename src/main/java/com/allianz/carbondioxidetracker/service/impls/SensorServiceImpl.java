@@ -27,38 +27,30 @@ import java.util.Optional;
  * The adaptors are used to convert the controller inputs to the entity classes. @see ReadingInputCommandAdaptor
  * This class uses repository classes to interact with H2 file-based database. @see SensorRepository
  * Builder pattern is used to generate custom response for Sensor insertion operation. @see ReadingInputResult
- * 
- * 
  * @version v1
  * @since 1.0
- *
  */
 @Service
 class SensorServiceImpl implements SensorService {
-	
 	/**
 	 * This Repository class is used to interact with Sensor entity. @see Sensor
 	 */
 	private SensorRepository sensorRepository;
-	
 	/**
 	 * This Adaptor class is used to convert the controller input object to Reading entity object.
 	 */
 	private ReadingInputCommandAdaptor readingInputCommandAdaptor;
-	
 	/**
 	 * This Adaptor class is used to convert the Sensor entity collection to sensorResponse collection.
 	 */
 	private SensorGetResponseAdaptor sensorGetResponseAdaptor;
-	
-
 	/**
-	 * This method takes command object as an input from {@code CarbonDioxideDataController}
+	 * This method takes command object as an input
 	 * and converts it to Reading entity object for further empty validation.
-	 * First it check the given sensorId whether it exists in database, it would throw {@code IValidationException} exception
-	 * if it does not present in database.
-	 * then it adds the reading to the sensor object to persist in the database. Builder pattern is used to set the response.
-	 *
+	 * First it check the given sensorId whether it exists in database, it would
+	 * @throws IValidationException if it does not present in database.
+	 * then it adds the reading to the sensor object to persist in the database.
+	 * Builder pattern is used to build the response.
 	 */
 	@Override
 	public ReadingInputResult addReading(ReadingInputCommand command) {
