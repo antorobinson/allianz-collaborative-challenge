@@ -8,14 +8,14 @@ import java.util.List;
 
 public interface SensorService {
 	
-	 public ReadingInputResult addReading(ReadingInputCommand command);
+	  ReadingInputResult addReading(ReadingInputCommand command);
 
-	 public List<Sensor> retrieveSensors();
+	  List<Sensor> retrieveSensors();
 	  
-	 public Sensor getSensorById(String sensorId);
+	  Sensor getSensorById(String sensorId);
 	  
-	 public void saveSensor(Sensor sensor);
+	  void saveSensor(Sensor sensor);
 	 
-	 public List<SensorGetResponse> search(ReadingGetRequest readingGetRequest) throws ParseException;
+	  List<SensorGetResponse> search(ReadingGetRequest readingGetRequest) throws ParseException;
 	 
 }

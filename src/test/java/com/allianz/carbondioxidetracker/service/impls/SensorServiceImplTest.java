@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public class SensorServiceImplTest {
@@ -95,5 +96,30 @@ public class SensorServiceImplTest {
         Assertions.assertThat(result.getSensorId()).isEqualTo(command.getSensorId()) ;
         Assertions.assertThat(result.getDate()).isEqualTo(date) ;
         Assertions.assertThat(result.getReadingValue()).isEqualTo(15F) ;
+    }
+
+    @Test
+    public void testRetrieveSensors() {
+
+        final List<Sensor> list = new ArrayList<>() ;
+        list.add(new Sensor()) ;
+        list.add(new Sensor()) ;
+
+        Mockito.when(mockSensorRepository.findAll()).thenReturn(list) ;
+        final List<Sensor> result = sensorServiceImplUnderTest.retrieveSensors();
+        Assertions.assertThat(result.size()).isEqualTo(2) ;
+    }
+
+    @Test
+    public void testGetSensorById() {
+
+        final String sensorId = "TPK1" ;
+        final Sensor sensor = new Sensor() ;
+        final Optional<Sensor> sensorWrapper = Optional.of(sensor) ;
+
+        Mockito.when(mockSensorRepository.findById(sensorId)).thenReturn(sensorWrapper) ;
+        final Sensor result = sensorServiceImplUnderTest.getSensorById(sensorId);
+
+        Assertions.assertThat(result).isEqualTo(sensor) ;
     }
 }

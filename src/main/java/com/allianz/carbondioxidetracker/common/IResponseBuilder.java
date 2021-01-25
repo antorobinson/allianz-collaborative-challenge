@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 
 public class IResponseBuilder<T> {
 
-    private enum Message {
+    public enum Message {
         SUCCESS ,
         NOT_SUCCESS
     }
@@ -72,14 +72,14 @@ public class IResponseBuilder<T> {
     public static final class ResponseBody<T> {
 
         private T data;
-        private Object error;
+        private Error error;
         private Message message ;
 
         public T getData() {
             return data;
         }
 
-        public Object getError() {
+        public Error getError() {
             return error;
         }
 
@@ -94,7 +94,7 @@ public class IResponseBuilder<T> {
             this.data = data;
         }
 
-        void setError(Object error) {
+        void setError(Error error) {
 
             this.data = null;
             message = Message.NOT_SUCCESS;

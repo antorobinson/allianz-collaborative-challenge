@@ -7,7 +7,7 @@ import com.allianz.carbondioxidetracker.service.adaptors.ReadingGetResponseAdapt
 import org.springframework.stereotype.Component;
 
 @Component
-public class ReadingGetResponseAdaptorImpl implements ReadingGetResponseAdaptor {
+class ReadingGetResponseAdaptorImpl implements ReadingGetResponseAdaptor {
 
 	@Override
 	public ReadingGetResponse adopt(Reading reading) {
@@ -18,6 +18,4 @@ public class ReadingGetResponseAdaptorImpl implements ReadingGetResponseAdaptor 
 		
 		return readingResponse;
 	}
-
-
 }

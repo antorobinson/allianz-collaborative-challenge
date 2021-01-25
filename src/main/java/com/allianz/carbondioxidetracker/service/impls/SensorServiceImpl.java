@@ -56,14 +56,14 @@ class SensorServiceImpl implements SensorService {
 
 	@Override
 	public List<Sensor> retrieveSensors() {
-		List<Sensor> sensorList = sensorRepository.findAll();
-		return sensorList;
+		return sensorRepository.findAll();
 	}
 
 	@Override
 	public Sensor getSensorById(String sensorId) {
+
 		Optional<Sensor> optSensor = sensorRepository.findById(sensorId);
-		return optSensor.get();
+		return optSensor.orElse(null);
 	}
 
 	@Override
@@ -72,19 +72,14 @@ class SensorServiceImpl implements SensorService {
 		
 	}
 
-
 	public List<Sensor> getSensorReadingsByCity(String city) {
-		List<Sensor> sensorReadings = sensorRepository.findSensorByCity(city);
-		return sensorReadings;
+		return sensorRepository.findSensorByCity(city);
 		
 	}
 
-
 	public List<Sensor> getSensorReadingsByDistrict(String district) {
-		List<Sensor> sensorReadings = sensorRepository.findSensorByDistrict(district);
-		return sensorReadings;
+		return sensorRepository.findSensorByDistrict(district);
 	}
-
 
 	public List<SensorGetResponse> search(ReadingGetRequest readingGetRequest){
 		
@@ -127,8 +122,4 @@ class SensorServiceImpl implements SensorService {
 	public void setSensorGetResponseAdaptor(SensorGetResponseAdaptor sensorGetResponseAdaptor) {
 		this.sensorGetResponseAdaptor = sensorGetResponseAdaptor;
 	}
-
-
-
-
 }
