@@ -67,7 +67,6 @@ import java.util.List;
  * @version v1
  * @since 1.0
  */
-
 @Slf4j
 @RestController
 @RequestMapping("/v1/co2")
@@ -83,7 +82,7 @@ public class CarbonDioxideDataController {
 	 */
 	private ReadingInputRequestAdaptor readingInputRequestAdaptor;
 	/**
-	 * This methode expose the api end point methode to post Reading values .
+	 * This methode expose the api end point methode to post a Reading value .
 	 * <p>
 	 * <b> Execution steps </b>
 	 * 1. receives the request
@@ -95,7 +94,7 @@ public class CarbonDioxideDataController {
 	 * 7. Build IResponse<ResponseBody<ReadingInputResult>> from result using IResponseBuilder
 	 * </p>
 	 * @param request ReadingInputRequest the input RequestBody of carbon values received from HTTP Post request.
-	 * If you want to see the values of request
+	 * To know the values of request
 	 * @see ReadingInputRequest
 	 * @return IResponse<ReadingInputResult> to know more about IResponse
 	 * @see IResponse and to know more about ReadingInputResult
@@ -126,27 +125,49 @@ public class CarbonDioxideDataController {
 				.setStatus(HttpStatus.OK)
 				.build() ;
 	}
-
+	/**
+	 * This methode expose the api end point methode to get Reading values .
+	 * <p>
+	 * <b> Execution steps </b>
+	 * 1. receives the request
+	 * 2. Submits the command to sensorService.addReading and get the result
+	 * 3. Build IResponse<ResponseBody<ReadingInputResult>> from result using IResponseBuilder
+	 * </p>
+	 * @param readingGetRequest ReadingGetRequest the input of query values received from HTTP Get request.
+	 * To know the values of request
+	 * @see ReadingGetRequest
+	 * @return IResponse<ResponseBody<List<SensorGetResponse>>> to know more about IResponse
+	 * @see IResponse and to know more about ReadingInputResult
+	 * @see IResponseBuilder and to know more about IResponseBuilder
+	 * @see IResponseBuilder.Message and to know more about Message
+	 * @see IResponseBuilder.ResponseBody and to know more about ResponseBody
+	 * @see IResponseBuilder.Error and to know more about Error
+	 */
 	@GetMapping("/readings")
 	public IResponse<ResponseBody<List<SensorGetResponse>>> getReadingPerCity(ReadingGetRequest readingGetRequest)
 			throws ParseException{
 		
-		List<SensorGetResponse> result = sensorService.search(readingGetRequest);		
+		List<SensorGetResponse> result = sensorService.search(readingGetRequest);
 		
 		return IResponseBuilder.builder(result)
 				.setStatus(HttpStatus.OK)
 				.build();
 	}
-	
-
+	/**
+	 * @param adaptor
+	 * Setter based auto wiring is used
+	 */
 	@Autowired
 	void setReadingInputRequestAdaptor(ReadingInputRequestAdaptor adaptor) {
 		this.readingInputRequestAdaptor = adaptor;
 	}
-
+	/**
+	 * @param service
+	 * Setter based auto wiring is used
+	 */
 	@Autowired
-	public void setSensorService(SensorService sensorService) {
-		this.sensorService = sensorService;
+	public void setSensorService(SensorService service) {
+		this.sensorService = service;
 	}
 	
 }
