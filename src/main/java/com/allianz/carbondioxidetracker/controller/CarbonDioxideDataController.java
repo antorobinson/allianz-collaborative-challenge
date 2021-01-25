@@ -82,7 +82,7 @@ public class CarbonDioxideDataController {
 	private SensorService sensorService;
 	/**
 	 * This Adaptor interface is used to convert the ReadingInputRequest to ReadingInputCommand.
-	 * To sse the available UseCases see {@link ReadingInputRequestAdaptor}
+	 * To sse the available methode see {@link ReadingInputRequestAdaptor}
 	 */
 	private ReadingInputRequestAdaptor readingInputRequestAdaptor;
 	/**

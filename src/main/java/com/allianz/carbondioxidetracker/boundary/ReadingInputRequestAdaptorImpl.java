@@ -16,15 +16,29 @@
 package com.allianz.carbondioxidetracker.boundary;
 
 
+import com.allianz.carbondioxidetracker.common.IAdaptor;
 import com.allianz.carbondioxidetracker.common.IEmptyValidation;
 import com.allianz.carbondioxidetracker.controller.ReadingInputRequest;
 import com.allianz.carbondioxidetracker.controller.adaptors.ReadingInputRequestAdaptor;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import org.springframework.stereotype.Component;
-
+/**
+ * This class is a Adaptor class implements from ReadingInputRequestAdaptor to adopt ReadingInputRequest to
+ * ReadingInputCommand
+ * <p>
+ * See {@link ReadingInputRequest}
+ * See {@link ReadingInputCommand}
+ * See {@link IAdaptor}
+ * </p>
+ */
 @Component
 class ReadingInputRequestAdaptorImpl implements ReadingInputRequestAdaptor {
 
+    /**
+     * This methode takes ReadingInputRequest as an argument and give ReadingInputCommand as a return type
+     * @param request is an instance of ReadingInputRequest class
+     * @return is an converted instance of ReadingInputCommand
+     */
     @Override
     public ReadingInputCommand adopt(ReadingInputRequest request) {
 

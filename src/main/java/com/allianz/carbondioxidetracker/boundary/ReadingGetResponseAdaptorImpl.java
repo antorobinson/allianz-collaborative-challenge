@@ -15,15 +15,27 @@
  */
 package com.allianz.carbondioxidetracker.boundary;
 
+import com.allianz.carbondioxidetracker.common.IAdaptor;
 import com.allianz.carbondioxidetracker.entity.Reading;
 import com.allianz.carbondioxidetracker.service.ReadingGetResponse;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingGetResponseAdaptor;
 import org.springframework.stereotype.Component;
-
-
+/**
+ * This class is a Adaptor class implements from ReadingGetResponseAdaptor to adopt Reading to ReadingGetResponse
+ * <p>
+ * See {@link Reading}
+ * See {@link ReadingGetResponse}
+ * See {@link IAdaptor}
+ * </p>
+ */
 @Component
 class ReadingGetResponseAdaptorImpl implements ReadingGetResponseAdaptor {
 
+	/**
+	 * This methode takes Reading as an argument and give ReadingGetResponse as a return type
+	 * @param reading is an instance of Reading class
+	 * @return is an converted instance of ReadingGetResponse
+	 */
 	@Override
 	public ReadingGetResponse adopt(Reading reading) {
 		ReadingGetResponse readingResponse = new ReadingGetResponse();

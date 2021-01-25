@@ -18,7 +18,6 @@ package com.allianz.carbondioxidetracker.controller.adaptors;
 import com.allianz.carbondioxidetracker.common.IAdaptor;
 import com.allianz.carbondioxidetracker.controller.ReadingInputRequest;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
-
 /**
  * This interface is a Adaptor interface extends from IAdaptor to adopt ReadingInputRequest to ReadingInputCommand
  * <p>
@@ -27,7 +26,6 @@ import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
  * See {@link IAdaptor}
  * </p>
  */
-
 public interface ReadingInputRequestAdaptor extends IAdaptor<ReadingInputRequest, ReadingInputCommand> {
 	
 }

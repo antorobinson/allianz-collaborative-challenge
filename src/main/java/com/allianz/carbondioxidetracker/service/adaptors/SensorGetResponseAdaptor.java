@@ -18,7 +18,14 @@ package com.allianz.carbondioxidetracker.service.adaptors;
 import com.allianz.carbondioxidetracker.common.IAdaptor;
 import com.allianz.carbondioxidetracker.entity.Sensor;
 import com.allianz.carbondioxidetracker.service.SensorGetResponse;
-
-public interface SensorGetResponseAdaptor extends IAdaptor< Sensor, SensorGetResponse >{
+/**
+ * This interface is a Adaptor interface extends from IAdaptor to adopt Sensor to SensorGetResponse
+ * <p>
+ * See {@link Sensor}
+ * See {@link SensorGetResponse}
+ * See {@link IAdaptor}
+ * </p>
+ */
+public interface SensorGetResponseAdaptor extends IAdaptor<Sensor, SensorGetResponse> {
 
 }
