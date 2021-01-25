@@ -20,15 +20,46 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class contains various methods that are used to perform CRUD operation on Service entity such as addReading, retriveSensors,
+ * getSensorById, saveSensor and search method
+ * <p>This class contains repository, adaptors and builders.
+ * The adaptors are used to convert the controller inputs to the entity classes. @see ReadingInputCommandAdaptor
+ * This class uses repository classes to interact with H2 file-based database. @see SensorRepository
+ * Builder pattern is used to generate custom response for Sensor insertion operation. @see ReadingInputResult
+ * 
+ * 
+ * @version v1
+ * @since 1.0
+ *
+ */
 @Service
 class SensorServiceImpl implements SensorService {
 	
+	/**
+	 * This Repository class is used to interact with Sensor entity. @see Sensor
+	 */
 	private SensorRepository sensorRepository;
 	
+	/**
+	 * This Adaptor class is used to convert the controller input object to Reading entity object.
+	 */
 	private ReadingInputCommandAdaptor readingInputCommandAdaptor;
 	
+	/**
+	 * This Adaptor class is used to convert the Sensor entity collection to sensorResponse collection.
+	 */
 	private SensorGetResponseAdaptor sensorGetResponseAdaptor;
 	
+
+	/**
+	 * This method takes command object as an input from {@code CarbonDioxideDataController}
+	 * and converts it to Reading entity object for further empty validation.
+	 * First it check the given sensorId whether it exists in database, it would throw {@code IValidationException} exception
+	 * if it does not present in database.
+	 * then it adds the reading to the sensor object to persist in the database. Builder pattern is used to set the response.
+	 *
+	 */
 	@Override
 	public ReadingInputResult addReading(ReadingInputCommand command) {
 
@@ -54,11 +85,17 @@ class SensorServiceImpl implements SensorService {
 				.build() ;
 	}
 
+	/**
+	 * This method is used to retrieve all sensor information
+	 */
 	@Override
 	public List<Sensor> retrieveSensors() {
 		return sensorRepository.findAll();
 	}
 
+	/**
+	 * This method is used to retrieve sensor object which matches the passed sensorId
+	 */
 	@Override
 	public Sensor getSensorById(String sensorId) {
 
@@ -66,6 +103,9 @@ class SensorServiceImpl implements SensorService {
 		return optSensor.orElse(null);
 	}
 
+	/**
+	 * This method is used to persist Sensor object in the database
+	 */
 	@Override
 	public void saveSensor(Sensor sensor) {
 		sensorRepository.save(sensor);
@@ -81,6 +121,12 @@ class SensorServiceImpl implements SensorService {
 		return sensorRepository.findSensorByDistrict(district);
 	}
 
+	/**
+	 * This method handles multiple query operations based on the optional query parameters.
+	 * It checks for district value and then executes findByDistrict method, if city is passed then it executes findByCity method.
+	 * if both city and district values are not provided, it fetches all sensor values to user.
+	 */
+	@Override
 	public List<SensorGetResponse> search(ReadingGetRequest readingGetRequest){
 		
 		List<Sensor> readingList = null;
@@ -108,16 +154,28 @@ class SensorServiceImpl implements SensorService {
 		return sensorReadingList;
 	}
 	
+	/**
+	 * @param sensorRepository
+	 * Setter based auto wiring is used
+	 */
 	@Autowired
 	void setSensorRepository(SensorRepository sensorRepository) {
 		this.sensorRepository = sensorRepository;
 	}
 
+	/**
+	 * @param adaptor
+	 * Setter based auto wiring is used
+	 */
 	@Autowired
 	void setReadingInputCommandAdaptor(ReadingInputCommandAdaptor adaptor) {
 		this.readingInputCommandAdaptor = adaptor;
 	}
 	
+	/**
+	 * @param sensorGetResponseAdaptor
+	 * Setter based auto wiring is used
+	 */
 	@Autowired
 	public void setSensorGetResponseAdaptor(SensorGetResponseAdaptor sensorGetResponseAdaptor) {
 		this.sensorGetResponseAdaptor = sensorGetResponseAdaptor;
