@@ -37,7 +37,7 @@ public class ReadingInputRequest extends ISelfValidation {
     private String sensorId;
 
     @NotNull(message = ErrorMessage.CARBON_VALUE_CANNOT_BE_EMPTY)
-    @Min(value = 299, message = ErrorMessage.CARBON_MUST_NEED_GREATER_VALUE)
+    @Min(value = 301, message = ErrorMessage.CARBON_MUST_NEED_GREATER_VALUE)
     @Max(value = 400, message = ErrorMessage.CARBON_MUST_NEED_LESSER_VALUE)
     private Float carbonValue;
 }
