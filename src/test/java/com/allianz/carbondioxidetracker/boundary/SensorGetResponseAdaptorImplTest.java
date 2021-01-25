@@ -1,7 +1,7 @@
 package com.allianz.carbondioxidetracker.boundary;
 
-import com.allianz.carbondioxidetracker.entity.Reading;
-import com.allianz.carbondioxidetracker.entity.Sensor;
+import com.allianz.carbondioxidetracker.repository.entity.Reading;
+import com.allianz.carbondioxidetracker.repository.entity.Sensor;
 import com.allianz.carbondioxidetracker.service.SensorGetResponse;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingGetResponseAdaptor;
 import org.assertj.core.api.Assertions;

@@ -13,7 +13,7 @@
  * @author Team Player-3
  * @author Team Player-4
  */
-package com.allianz.carbondioxidetracker.advice;
+package com.allianz.carbondioxidetracker.controller.advice;
 
 import com.allianz.carbondioxidetracker.common.ErrorCode;
 import com.allianz.carbondioxidetracker.common.IResponse;

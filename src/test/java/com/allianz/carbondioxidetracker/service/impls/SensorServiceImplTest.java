@@ -1,9 +1,9 @@
 package com.allianz.carbondioxidetracker.service.impls;
 
 import com.allianz.carbondioxidetracker.common.IValidationException;
-import com.allianz.carbondioxidetracker.entity.Reading;
-import com.allianz.carbondioxidetracker.entity.Sensor;
 import com.allianz.carbondioxidetracker.repository.SensorRepository;
+import com.allianz.carbondioxidetracker.repository.entity.Reading;
+import com.allianz.carbondioxidetracker.repository.entity.Sensor;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import com.allianz.carbondioxidetracker.service.ReadingInputResult;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingInputCommandAdaptor;

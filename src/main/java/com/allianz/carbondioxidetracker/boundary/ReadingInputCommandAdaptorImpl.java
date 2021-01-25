@@ -17,7 +17,7 @@ package com.allianz.carbondioxidetracker.boundary;
 
 import com.allianz.carbondioxidetracker.common.IAdaptor;
 import com.allianz.carbondioxidetracker.common.IEmptyValidation;
-import com.allianz.carbondioxidetracker.entity.Reading;
+import com.allianz.carbondioxidetracker.repository.entity.Reading;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import com.allianz.carbondioxidetracker.service.adaptors.ReadingInputCommandAdaptor;
 import org.springframework.stereotype.Component;

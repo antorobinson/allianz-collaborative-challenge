@@ -9,7 +9,7 @@
  * Any one can use this code for their organization, personal or learning purposes.
  * ANY ONE CAN ALTER THIS CODE OR THIS FILE.
  */
-package com.allianz.carbondioxidetracker.advice;
+package com.allianz.carbondioxidetracker.controller.advice;
 
 class ExceptionController {
 

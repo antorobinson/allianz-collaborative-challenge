@@ -1,4 +1,4 @@
-package com.allianz.carbondioxidetracker.advice;
+package com.allianz.carbondioxidetracker.controller.advice;
 
 import com.allianz.carbondioxidetracker.common.ErrorCode;
 import com.allianz.carbondioxidetracker.common.IResponseBuilder.ResponseBody;

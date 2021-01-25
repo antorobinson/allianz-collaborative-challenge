@@ -16,7 +16,7 @@
 package com.allianz.carbondioxidetracker.service;
 
 import com.allianz.carbondioxidetracker.controller.ReadingGetRequest;
-import com.allianz.carbondioxidetracker.entity.Sensor;
+import com.allianz.carbondioxidetracker.repository.entity.Sensor;
 
 import java.text.ParseException;
 import java.util.List;

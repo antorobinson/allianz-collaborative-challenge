@@ -13,7 +13,7 @@
  * @author Team Player-3
  * @author Team Player-4
  */
-package com.allianz.carbondioxidetracker.entity;
+package com.allianz.carbondioxidetracker.repository.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

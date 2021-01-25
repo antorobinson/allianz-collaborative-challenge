@@ -1,6 +1,6 @@
 package com.allianz.carbondioxidetracker.boundary;
 
-import com.allianz.carbondioxidetracker.entity.Reading;
+import com.allianz.carbondioxidetracker.repository.entity.Reading;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package com.allianz.carbondioxidetracker.entity;
+package com.allianz.carbondioxidetracker.repository.entity;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

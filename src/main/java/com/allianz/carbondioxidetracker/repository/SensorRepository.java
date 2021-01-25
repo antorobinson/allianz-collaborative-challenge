@@ -15,7 +15,7 @@
  */
 package com.allianz.carbondioxidetracker.repository;
 
-import com.allianz.carbondioxidetracker.entity.Sensor;
+import com.allianz.carbondioxidetracker.repository.entity.Sensor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

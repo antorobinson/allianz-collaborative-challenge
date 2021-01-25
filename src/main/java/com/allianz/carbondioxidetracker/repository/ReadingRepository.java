@@ -16,7 +16,7 @@
 package com.allianz.carbondioxidetracker.repository;
 
 
-import com.allianz.carbondioxidetracker.entity.Reading;
+import com.allianz.carbondioxidetracker.repository.entity.Reading;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

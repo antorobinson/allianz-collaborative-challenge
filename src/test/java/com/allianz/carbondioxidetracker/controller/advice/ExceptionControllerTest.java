@@ -1,4 +1,4 @@
-package com.allianz.carbondioxidetracker.advice;
+package com.allianz.carbondioxidetracker.controller.advice;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;

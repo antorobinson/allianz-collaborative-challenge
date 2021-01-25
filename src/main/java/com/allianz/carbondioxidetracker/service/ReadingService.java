@@ -15,7 +15,7 @@
  */
 package com.allianz.carbondioxidetracker.service;
 
-import com.allianz.carbondioxidetracker.entity.Reading;
+import com.allianz.carbondioxidetracker.repository.entity.Reading;
 
 import java.util.List;
 

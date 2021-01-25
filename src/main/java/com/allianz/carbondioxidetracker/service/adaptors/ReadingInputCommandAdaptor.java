@@ -16,7 +16,7 @@
 package com.allianz.carbondioxidetracker.service.adaptors;
 
 import com.allianz.carbondioxidetracker.common.IAdaptor;
-import com.allianz.carbondioxidetracker.entity.Reading;
+import com.allianz.carbondioxidetracker.repository.entity.Reading;
 import com.allianz.carbondioxidetracker.service.ReadingInputCommand;
 /**
  * This interface is a Adaptor interface extends from IAdaptor to adopt ReadingInputCommand to Reading

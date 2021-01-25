@@ -16,7 +16,7 @@
 package com.allianz.carbondioxidetracker.service.adaptors;
 
 import com.allianz.carbondioxidetracker.common.IAdaptor;
-import com.allianz.carbondioxidetracker.entity.Reading;
+import com.allianz.carbondioxidetracker.repository.entity.Reading;
 import com.allianz.carbondioxidetracker.service.ReadingGetResponse;
 /**
  * This interface is a Adaptor interface extends from IAdaptor to adopt Reading to ReadingGetResponse
