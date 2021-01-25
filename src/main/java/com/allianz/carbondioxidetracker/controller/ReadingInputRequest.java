@@ -15,6 +15,7 @@
  */
 package com.allianz.carbondioxidetracker.controller;
 
+import com.allianz.carbondioxidetracker.common.ErrorMessage;
 import com.allianz.carbondioxidetracker.common.ISelfValidation;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,13 +30,13 @@ import javax.validation.constraints.Size;
 @Setter
 public class ReadingInputRequest extends ISelfValidation {
 
-    @NotNull(message = "sensorId cannot be empty")
-    @Size(min=2, max=30 , message = "sensorId must between 3 and 32")
-    @Pattern(regexp = "^[a-zA-Z0-9]*$" ,message="sensorId must be alphanumeric")
+    @NotNull(message = ErrorMessage.SENSOR_ID_CANNOT_BE_EMPTY)
+    @Size(min=2, max=30 , message = ErrorMessage.INVALID_SENSOR_ID_LENGTH)
+    @Pattern(regexp = "^[a-zA-Z0-9]*$" ,message=ErrorMessage.INVALID_INVALID_PATTERN)
     private String sensorId;
 
-    @NotNull(message = "carbonValue cannot be empty")
-    @Min(value = 300, message = "carbonValue must be greater than 300")
-    @Max(value = 400, message = "carbonValue must be lesser than 400")
+    @NotNull(message = ErrorMessage.CARBON_VALUE_CANNOT_BE_EMPTY)
+    @Min(value = 299, message = ErrorMessage.CARBON_MUST_NEED_GREATER_VALUE)
+    @Max(value = 400, message = ErrorMessage.CARBON_MUST_NEED_LESSER_VALUE)
     private Float carbonValue;
 }

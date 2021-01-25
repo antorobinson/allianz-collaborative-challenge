@@ -19,8 +19,17 @@ public enum ErrorMessage {
 
     NULL_REQUEST("Null Request") ,
     NULL_COMMAND("Null Command") ,
-    SENSOR_NOT_FOUND("Sensor not found")
+    SENSOR_NOT_FOUND("Sensor not found") ,
     ;
+
+
+    public static final String SENSOR_ID_CANNOT_BE_EMPTY = "sensorId cannot be empty" ;
+    public static final String INVALID_SENSOR_ID_LENGTH = "sensorId must between 3 and 32" ;
+    public static final String INVALID_INVALID_PATTERN = "sensorId must be alphanumeric" ;
+    public static final String CARBON_VALUE_CANNOT_BE_EMPTY = "carbonValue cannot be empty" ;
+    public static final String CARBON_MUST_NEED_GREATER_VALUE = "carbonValue must be greater than 300" ;
+    public static final String CARBON_MUST_NEED_LESSER_VALUE = "carbonValue must be lesser than 400" ;
+
 
     private final String value;
 
