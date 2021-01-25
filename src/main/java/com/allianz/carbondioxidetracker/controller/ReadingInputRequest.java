@@ -17,6 +17,7 @@ package com.allianz.carbondioxidetracker.controller;
 
 import com.allianz.carbondioxidetracker.common.ErrorMessage;
 import com.allianz.carbondioxidetracker.common.ISelfValidation;
+import com.allianz.carbondioxidetracker.common.Regex;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,7 +33,7 @@ public class ReadingInputRequest extends ISelfValidation {
 
     @NotNull(message = ErrorMessage.SENSOR_ID_CANNOT_BE_EMPTY)
     @Size(min=2, max=30 , message = ErrorMessage.INVALID_SENSOR_ID_LENGTH)
-    @Pattern(regexp = "^[a-zA-Z0-9]*$" ,message=ErrorMessage.INVALID_INVALID_PATTERN)
+    @Pattern(regexp = Regex.ALPHA_NUMERIC, message=ErrorMessage.INVALID_INVALID_PATTERN)
     private String sensorId;
 
     @NotNull(message = ErrorMessage.CARBON_VALUE_CANNOT_BE_EMPTY)
