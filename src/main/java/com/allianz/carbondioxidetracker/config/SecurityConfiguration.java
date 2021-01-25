@@ -19,6 +19,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+/**
+ * This method is used to configure authorization for end point URLs and H2 database web UI login URL
+ * we are disabling csrf and frameOptions for this demo.
+ *
+ */
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
