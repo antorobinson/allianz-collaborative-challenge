@@ -84,7 +84,7 @@ public class CarbonDioxideDataControllerTest {
         final ReadingGetRequest readingGetRequest = new ReadingGetRequest();
 
         Mockito.when(mockSensorService.search(readingGetRequest)).thenThrow(ParseException.class) ;
-        controllerUnderTest.getReadingPerCity(readingGetRequest);
+        controllerUnderTest.getReading(readingGetRequest);
     }
 
     @Test
@@ -94,10 +94,10 @@ public class CarbonDioxideDataControllerTest {
         final List<SensorGetResponse> list = new ArrayList<>() ;
 
         Mockito.when(mockSensorService.search(readingGetRequest)).thenReturn(list) ;
-        controllerUnderTest.getReadingPerCity(readingGetRequest);
+        controllerUnderTest.getReading(readingGetRequest);
 
         final IResponse<ResponseBody<List<SensorGetResponse>>> result = controllerUnderTest
-                .getReadingPerCity(readingGetRequest);
+                .getReading(readingGetRequest);
 
         Assertions.assertThat(result).isNotNull() ;
         Assertions.assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK) ;

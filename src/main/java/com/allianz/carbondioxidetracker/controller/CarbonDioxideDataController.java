@@ -147,7 +147,7 @@ public class CarbonDioxideDataController {
 	 * @see IResponseBuilder.Error and to know more about Error
 	 */
 	@GetMapping("/readings")
-	public IResponse<ResponseBody<List<SensorGetResponse>>> getReadingPerCity(ReadingGetRequest readingGetRequest)
+	public IResponse<ResponseBody<List<SensorGetResponse>>> getReading(ReadingGetRequest readingGetRequest)
 			throws ParseException{
 		
 		List<SensorGetResponse> result = sensorService.search(readingGetRequest);
